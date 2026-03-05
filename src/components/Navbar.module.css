@@ -1,0 +1,131 @@
+/* ============================================================
+   Navbar.module.css — Navegación flotante brutalista
+   ============================================================ */
+
+.navbar {
+  position: fixed;
+  top: 1.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  width: min(92vw, 1100px);
+  background: rgba(10, 10, 10, 0.85);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 2px solid transparent;
+  border-radius: 4px;
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+.navbar.scrolled {
+  border-color: var(--red);
+  box-shadow: 4px 4px 0 var(--red);
+  background: rgba(10, 10, 10, 0.97);
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 0.85rem 1.5rem;
+}
+
+/* Logo */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-title);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: -0.02em;
+  text-decoration: none;
+  flex-shrink: 0;
+  margin-right: auto;
+  transition: color 0.18s ease;
+}
+
+.logo:hover {
+  color: var(--red);
+}
+
+.logo strong {
+  font-weight: 900;
+  color: var(--red);
+}
+
+.logoDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--red);
+  flex-shrink: 0;
+  animation: blink 2s step-end infinite;
+}
+
+/* Links */
+.links {
+  display: flex;
+  list-style: none;
+  gap: 0.25rem;
+}
+
+.link {
+  font-family: var(--font-title);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(245, 245, 240, 0.7);
+  padding: 0.4rem 0.75rem;
+  border: 1px solid transparent;
+  transition:
+    color 0.18s ease,
+    border-color 0.18s ease;
+}
+
+.link:hover {
+  color: var(--white);
+  border-color: rgba(245, 245, 240, 0.15);
+}
+
+/* CTA */
+.cta {
+  font-family: var(--font-title);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--black);
+  background: var(--red);
+  padding: 0.5rem 1.1rem;
+  border: 2px solid var(--red);
+  flex-shrink: 0;
+  transition:
+    background 0.18s var(--ease-brutal),
+    color 0.18s var(--ease-brutal),
+    box-shadow 0.18s var(--ease-brutal),
+    transform 0.18s var(--ease-brutal);
+}
+
+.cta:hover {
+  background: transparent;
+  color: var(--red);
+  box-shadow: 3px 3px 0 var(--red);
+  transform: translate(-1px, -1px);
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .links {
+    display: none;
+  }
+
+  .inner {
+    padding: 0.75rem 1.1rem;
+  }
+}

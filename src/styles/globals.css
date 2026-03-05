@@ -1,0 +1,113 @@
+/* ============================================================
+   ATACAMA DEV — globals.css
+   Brutalista-Minimalista | Paleta 60%-30%-10%
+   Blanco #F5F5F0 · Negro #0A0A0A · Rojo #E63329
+   ============================================================ */
+
+/* ---------- Reset moderno ---------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ---------- Tokens de diseño ---------- */
+:root {
+  /* Paleta 60-30-10 */
+  --white:      #F5F5F0;
+  --white-soft: #EBEBE5;
+  --black:      #0A0A0A;
+  --black-mid:  #1A1A1A;
+  --red:        #E63329;
+  --red-dark:   #C0271E;
+  --gray:       #6B6B6B;
+  --gray-light: #A0A0A0;
+
+  /* Tipografía */
+  --font-title: 'Space Grotesk', system-ui, sans-serif;
+  --font-body:  'Inter', system-ui, sans-serif;
+
+  /* Bordes brutalistas */
+  --border:     2px solid var(--black);
+  --border-w:   3px solid var(--white);
+
+  /* Easing personalizado */
+  --ease-brutal: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-snap:   cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+  /* Espaciado */
+  --section-pad: clamp(5rem, 10vw, 8rem);
+  --container:   1200px;
+}
+
+/* ---------- Base ---------- */
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--white);
+  color: var(--black);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  line-height: 1.5;
+}
+
+/* ---------- Utilidades globales ---------- */
+img, video, svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button, a {
+  cursor: pointer;
+}
+
+/* Accesibilidad: foco visible */
+*:focus-visible {
+  outline: 3px solid var(--red);
+  outline-offset: 3px;
+}
+
+/* ---------- Scrollbar brutalista ---------- */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--white);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--black);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--red);
+}
+
+/* ---------- Selección de texto ---------- */
+::selection {
+  background: var(--red);
+  color: var(--white);
+}
+
+/* ---------- Animación blink (punto) ---------- */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

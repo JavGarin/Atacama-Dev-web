@@ -1,0 +1,135 @@
+/* ============================================================
+   StackCarousel.module.css — Carrusel infinito brutalista
+   ============================================================ */
+
+.section {
+  background: var(--black);
+  padding: var(--section-pad) 0;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Header */
+.header {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: clamp(1.5rem, 6vw, 5rem);
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+.sectionNum {
+  font-family: var(--font-title);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--red);
+  letter-spacing: 0.15em;
+}
+
+.sectionLabel {
+  font-family: var(--font-title);
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-weight: 700;
+  color: rgba(245, 245, 240, 0.5);
+  letter-spacing: 0.02em;
+}
+
+/* Banda de carrusel */
+.track {
+  width: 100%;
+  overflow: hidden;
+  border-top: 2px solid rgba(245, 245, 240, 0.08);
+  border-bottom: 2px solid rgba(245, 245, 240, 0.08);
+  margin-bottom: 0.75rem;
+  /* Fade lateral */
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+}
+
+/* Lista del carrusel */
+.list {
+  display: flex;
+  list-style: none;
+  width: max-content;
+  padding: 0.9rem 0;
+  gap: 0;
+  /* La animación se define por clase */
+}
+
+@keyframes marqueeForward {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes marqueeReverse {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+
+.listForward {
+  animation: marqueeForward 28s linear infinite;
+}
+
+.listReverse {
+  animation: marqueeReverse 22s linear infinite;
+}
+
+/* Pausa con hover en todo el track */
+.track:hover .listForward,
+.track:hover .listReverse {
+  animation-play-state: paused;
+}
+
+/* Items */
+.item,
+.itemAlt {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  flex-shrink: 0;
+}
+
+.word {
+  font-family: var(--font-title);
+  font-size: clamp(1.4rem, 3.5vw, 2.2rem);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  color: var(--white);
+  padding: 0 1.25rem;
+  transition: color 0.18s ease;
+  white-space: nowrap;
+}
+
+.item:hover .word {
+  color: var(--red);
+}
+
+/* Items alternate row — texto en rojo suave */
+.itemAlt .word {
+  color: rgba(245, 245, 240, 0.45);
+  font-size: clamp(1.2rem, 2.8vw, 1.8rem);
+}
+
+.itemAlt:hover .word {
+  color: var(--red);
+}
+
+.sep {
+  font-size: 0.7rem;
+  color: var(--red);
+  opacity: 0.7;
+}
