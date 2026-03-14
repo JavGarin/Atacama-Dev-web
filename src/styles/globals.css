@@ -97,6 +97,13 @@ button, a {
   color: var(--white);
 }
 
+/* ---------- Cursor personalizado global ---------- */
+/* Clase añadida por Cursor.jsx solo en no-touch devices */
+html.cursor-hidden,
+html.cursor-hidden * {
+  cursor: none !important;
+}
+
 /* ---------- Animación blink (punto) ---------- */
 @keyframes blink {
   0%, 100% { opacity: 1; }

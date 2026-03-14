@@ -88,11 +88,7 @@
   animation: marqueeReverse 22s linear infinite;
 }
 
-/* Pausa con hover en todo el track */
-.track:hover .listForward,
-.track:hover .listReverse {
-  animation-play-state: paused;
-}
+/* Carrusel continuo (sin pausa al hover) */
 
 /* Items */
 .item,

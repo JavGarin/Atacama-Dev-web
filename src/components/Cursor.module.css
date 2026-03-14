@@ -1,0 +1,42 @@
+/* ============================================================
+   Cursor.module.css — Cursor brutalista global
+   Cuadrado rojo · Punto + Anillo con lag
+   ============================================================ */
+
+.dot,
+.ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 99999;
+  will-change: transform;
+  /* Centrado sobre el cursor real */
+  transform: translate(-50%, -50%);
+}
+
+/* ── Punto sólido rojo ── */
+.dot {
+  width: 8px;
+  height: 8px;
+  background: var(--red);
+  /* Cuadrado brutalista (sin border-radius) */
+  border-radius: 0;
+}
+
+/* ── Anillo cuadrado con borde rojo ── */
+.ring {
+  width: 32px;
+  height: 32px;
+  border: 2px solid var(--red);
+  border-radius: 0;
+  opacity: 0.85;
+}
+
+/* ── Reduced motion: ocultar del todo ── */
+@media (prefers-reduced-motion: reduce) {
+  .dot,
+  .ring {
+    display: none;
+  }
+}

@@ -1,92 +1,109 @@
 import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import styles from './Hero.module.css';
 
+gsap.registerPlugin(ScrollTrigger);
+
+/* ─────────────────────────────────────────────
+   Divide texto en spans individuales por letra
+───────────────────────────────────────────── */
+function LetterSplit({ text, className }) {
+  return (
+    <>
+      {text.split('').map((char, i) => (
+        <span
+          key={i}
+          className={styles.ltr}
+          aria-hidden="true"
+          data-char={char}
+          style={{ display: char === ' ' ? 'inline' : 'inline-block' }}
+        >
+          {char === ' ' ? '\u00A0' : char}
+        </span>
+      ))}
+    </>
+  );
+}
+
 export default function Hero() {
-  const sectionRef  = useRef(null);
-  const badgeRef    = useRef(null);
-  const taglineRef  = useRef(null);
-  const line1Ref    = useRef(null);
-  const line2Ref    = useRef(null);
-  const descRef     = useRef(null);
-  const ctaRef      = useRef(null);
-  const tagsRef     = useRef(null);
+  const sectionRef = useRef(null);
+  const lineRef    = useRef(null);
+  const badgeRef   = useRef(null);
+  const taglineRef = useRef(null);
+  const titleRef   = useRef(null);
+  const dividerRef = useRef(null);
+  const metaRef    = useRef(null);
+  const decorRef   = useRef(null);
 
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia(
       '(prefers-reduced-motion: reduce)'
     ).matches;
 
-    const elements = [
-      badgeRef.current,
-      taglineRef.current,
-      line1Ref.current,
-      line2Ref.current,
-      descRef.current,
-      ctaRef.current,
-      tagsRef.current,
-    ];
+    const letters = titleRef.current
+      ? titleRef.current.querySelectorAll(`.${styles.ltr}`)
+      : [];
+
+    /* ── Estado inicial ── */
+    gsap.set([badgeRef.current, taglineRef.current,
+               dividerRef.current, metaRef.current], {
+      opacity: 0, y: 18,
+    });
+    gsap.set(lineRef.current,    { scaleX: 0, transformOrigin: 'left center' });
+    gsap.set(decorRef.current,   { opacity: 0 });
+    gsap.set(letters,            { y: '105%', opacity: 0 });
 
     if (prefersReducedMotion) {
-      gsap.set(elements, { opacity: 1, y: 0, clearProps: 'transform' });
+      gsap.set(
+        [badgeRef.current, taglineRef.current, dividerRef.current,
+         metaRef.current, decorRef.current, lineRef.current],
+        { opacity: 1, y: 0, scale: 1, scaleX: 1 }
+      );
+      gsap.set(letters, { y: 0, opacity: 1 });
       return;
     }
 
-    const tl = gsap.timeline({
-      defaults: { ease: 'expo.out' },
-      delay: 0.1,
-    });
+    /* ── Timeline de entrada ── */
+    const tl = gsap.timeline({ defaults: { ease: 'expo.out' }, delay: 0.05 });
 
-    // Badge pill
-    tl.to(badgeRef.current, {
+    // Línea roja crece
+    tl.to(lineRef.current,  { scaleX: 1, duration: 0.65 });
+
+    // Badge
+    tl.to(badgeRef.current, { opacity: 1, y: 0, duration: 0.42 }, '-=0.3');
+
+    // Título unificado en una línea
+    tl.to(letters, {
+      y: 0,
       opacity: 1,
-      y: 0,
-      duration: 0.5,
-    });
-
-    // Tagline
-    tl.to(taglineRef.current, {
-      opacity: 1,
-      y: 0,
-      duration: 0.5,
-    }, '-=0.2');
-
-    // Título línea 1
-    tl.to(line1Ref.current, {
-      y: 0,
-      duration: 0.7,
+      duration: 0.55,
+      stagger: { each: 0.02, from: 'start' },
       ease: 'expo.out',
-    }, '-=0.25');
+    }, '-=0.3');
 
-    // Título línea 2 (acento rojo)
-    tl.to(line2Ref.current, {
-      y: 0,
-      duration: 0.7,
-      ease: 'expo.out',
-    }, '-=0.5');
+    // Tagline (aparece y luego se llena de izquierda a derecha)
+    tl.to(taglineRef.current, { opacity: 1, y: 0, duration: 0.38 }, '-=0.4')
+      .to(taglineRef.current, {
+        '--fill-width': '100%',
+        color: '#F5F5F0',
+        duration: 0.8, // Velocidad más lenta para simular carga
+        ease: 'power1.inOut'
+      }, '+=0.1');
 
-    // Descripción
-    tl.to(descRef.current, {
-      opacity: 1,
-      y: 0,
-      duration: 0.45,
-    }, '-=0.2');
+    // Divisor horizontal
+    tl.to(dividerRef.current, { opacity: 1, y: 0, duration: 0.35 }, '-=0.2');
 
-    // CTA
-    tl.to(ctaRef.current, {
-      opacity: 1,
-      y: 0,
-      duration: 0.4,
-      ease: 'back.out(1.4)',
-    }, '-=0.15');
+    // Fila meta (desc + cta + tags)
+    tl.to(metaRef.current, { opacity: 1, y: 0, duration: 0.4 }, '-=0.15');
 
-    // Tags
-    tl.to(tagsRef.current, {
-      opacity: 1,
-      duration: 0.35,
-    }, '-=0.1');
+    // Número decorativo
+    tl.to(decorRef.current, { opacity: 1, duration: 0.6 }, '-=0.2');
 
-    return () => tl.kill();
+    return () => {
+      tl.kill();
+      ScrollTrigger.getAll().forEach(t => t.kill());
+    };
   }, []);
 
   return (
@@ -96,91 +113,93 @@ export default function Hero() {
       className={styles.hero}
       aria-label="Atacama Dev — Presentación"
     >
-      {/* Fondo brutalista: líneas de cuadrícula */}
+      {/* Fondo: cuadrícula sutil */}
       <div className={styles.grid} aria-hidden="true" />
+
+      {/* Barra roja superior */}
+      <div ref={lineRef} className={styles.accentLine} aria-hidden="true" />
 
       <div className={styles.content}>
 
-        {/* Badge */}
-        <div
-          ref={badgeRef}
-          className={styles.badge}
-          aria-label="Software development, Chile, establecido en 2026"
-        >
-          <span className={styles.badgeDot} aria-hidden="true" />
-          SWD · CHILE · EST. 2026
+        {/* ── Fila superior: badge ── */}
+        <div className={styles.topRow}>
+          <div
+            ref={badgeRef}
+            className={styles.badge}
+            aria-label="Software development, Chile, establecido en 2026"
+          >
+            <span className={styles.badgeDot} aria-hidden="true" />
+            SWD · CHILE · EST. 2026
+          </div>
         </div>
 
-        {/* Tagline */}
-        <p ref={taglineRef} className={styles.tagline}>
-          Lleva tu negocio al siguiente nivel.
-        </p>
-
-        {/* Título principal */}
-        <h1 className={styles.title} aria-label="Atacama Dev">
-          <span className={styles.titleOverflow}>
-            <span ref={line1Ref} className={styles.titleLine}>
-              Atacama
-            </span>
-          </span>
-          <span className={styles.titleOverflow}>
-            <span
-              ref={line2Ref}
-              className={`${styles.titleLine} ${styles.titleAccent}`}
-            >
-              Dev
+        {/* ── Título principal (Una sola línea) ── */}
+        <h1
+          ref={titleRef}
+          className={styles.title}
+          aria-label="Atacama Dev"
+        >
+          <span className={styles.titleLine}>
+            <LetterSplit text="Atacama" />
+            <span className={styles.titleSpace}>&nbsp;</span>
+            <span className={styles.titleAccent}>
+              <LetterSplit text="Dev" />
             </span>
           </span>
         </h1>
 
-        {/* Descripción */}
-        <p ref={descRef} className={styles.desc}>
-          Construimos ideas digitales que escalan. Desarrollo web y software
-          a medida para potenciar tu proyecto o empresa desde Chile al mundo.
+        {/* ── Tagline alineada ── */}
+        <p ref={taglineRef} className={styles.tagline}>
+          Lleva tus ideas al siguiente nivel.
         </p>
 
-        {/* CTA */}
-        <div ref={ctaRef} className={styles.actions}>
-          <a
-            href="mailto:contacto@atacamadev.cl"
-            className={styles.ctaPrimary}
-            aria-label="Enviar correo a Atacama Dev para iniciar un proyecto"
-          >
-            <span>Iniciar proyecto</span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.5"
-              strokeLinecap="square"
-              strokeLinejoin="miter"
-              aria-hidden="true"
-            >
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg>
-          </a>
-          <a href="#proyectos" className={styles.ctaSecondary}>
-            Ver proyectos
-          </a>
-        </div>
+        {/* ── Divisor ── */}
+        <div ref={dividerRef} className={styles.divider} aria-hidden="true" />
 
-        {/* Tags inferiores */}
-        <div ref={tagsRef} className={styles.tags} aria-hidden="true">
-          <span className={styles.tag}>WEB APPS</span>
-          <span className={styles.tagSep} />
-          <span className={styles.tag}>SOFTWARE</span>
-          <span className={styles.tagSep} />
-          <span className={styles.tag}>UX/UI</span>
-          <span className={styles.tagSep} />
-          <span className={styles.tag}>APIS</span>
+        {/* ── Fila meta: descripción + CTA + tags ── */}
+        <div ref={metaRef} className={styles.meta}>
+          <div className={styles.metaLeft}>
+            <p className={styles.desc}>
+              Construimos ideas digitales que escalan. Desarrollo web y software a medida para potenciar tu proyecto desde Chile al mundo.
+            </p>
+
+            <div className={styles.tags} aria-hidden="true">
+              {['WEB APPS', 'SOFTWARE', 'UX/UI', 'APIs'].map((t, i, arr) => (
+                <React.Fragment key={t}>
+                  <span className={styles.tag}>{t}</span>
+                  {i < arr.length - 1 && <span className={styles.tagSep} />}
+                </React.Fragment>
+              ))}
+            </div>
+          </div>
+
+          <div className={styles.metaRight}>
+            <a
+              href="mailto:contacto@atacamadev.cl"
+              className={styles.ctaPrimary}
+              aria-label="Enviar correo a Atacama Dev"
+            >
+              <span>Iniciar proyecto</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18" height="18"
+                viewBox="0 0 24 24"
+                fill="none" stroke="currentColor"
+                strokeWidth="2.5" strokeLinecap="square" strokeLinejoin="miter"
+                aria-hidden="true"
+              >
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </a>
+            <a href="#proyectos" className={styles.ctaSecondary}>
+              Ver proyectos
+            </a>
+          </div>
         </div>
       </div>
 
       {/* Número decorativo */}
-      <span className={styles.decorNum} aria-hidden="true">01</span>
+      <span ref={decorRef} className={styles.decorNum} aria-hidden="true">01</span>
     </section>
   );
 }
