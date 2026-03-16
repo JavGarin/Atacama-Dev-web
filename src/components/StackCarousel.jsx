@@ -3,18 +3,21 @@ import styles from './StackCarousel.module.css';
 
 // Palabras del carrusel (ajustadas según indicaciones)
 const WORDS = [
-  'Escalabilidad',
+  'Web Apps',
   'Seguridad',
-  'Modernidad',
-  'Diseño',
-  'APIs',
-  'Frontend',
-  'Performance',
-  'UX/UI',
-  'Backend',
-  'Integración',
-  'Cloud',
   'Automatización',
+  'Frontend',
+  'UX/UI Design',
+  'API REST',
+  'Software Dev',
+  'Mobile First',
+  'Cloud',
+  'Performance',
+  'Capacitación',
+  'Escalabilidad',
+  'Hardening',
+  'Integración',
+  'Backend',
 ];
 
 export default function StackCarousel() {
@@ -33,6 +36,17 @@ export default function StackCarousel() {
         <p className={styles.sectionLabel}>Lo que nos define</p>
       </div>
 
+      {/* Descripción profesional */}
+      <div className={styles.intro}>
+        <p className={styles.introText}>
+          Somos <strong>Atacama Dev</strong> — una empresa chilena de desarrollo de software.
+          {' '}Construimos sitios web, aplicaciones y sistemas a medida con foco en
+          {' '}<strong>arquitectura sólida, seguridad activa y prevención de ataques</strong>.
+          {' '}Cada proyecto se entrega con alto rendimiento, código limpio y una
+          {' '}experiencia de usuario que convierte — desde el diseño frontend hasta el
+          {' '}despliegue en producción.
+        </p>
+      </div>
       {/* Banda carrusel superior (izquierda → derecha) */}
       <div
         className={styles.track}

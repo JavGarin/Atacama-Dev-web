@@ -26,7 +26,10 @@ export default function Footer() {
         <div className={styles.brand}>
           <div className={styles.logo}>
             <span className={styles.logoDot} aria-hidden="true" />
-            <span>Atacama<strong>Dev</strong></span>
+            <span className={styles.logoText}>
+              <span>Atacama</span>
+              <strong>Dev</strong>
+            </span>
           </div>
           <p className={styles.tagline}>
             Potenciamos tu idea.<br />

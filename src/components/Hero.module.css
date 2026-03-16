@@ -110,6 +110,8 @@
 
 .titleAccent {
   color: var(--red);
+  display: inline-block;
+  transform: translateY(0.06em); /* Ajuste sutil para el título grande */
 }
 
 /* ── Tagline alineada ── */

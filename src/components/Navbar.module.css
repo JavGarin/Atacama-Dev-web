@@ -58,6 +58,16 @@
   color: var(--red);
 }
 
+.logoText {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.22em;
+}
+
+.logoText strong {
+  transform: translateY(0.10em);
+}
+
 .logoDot {
   width: 8px;
   height: 8px;
