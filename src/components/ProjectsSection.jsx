@@ -72,6 +72,28 @@ const PROJECTS = [
     image: '/projects/sebastian-mora.avif',
     url: 'https://curve-slider-web.vercel.app/',
   },
+  {
+    id: 'p7',
+    num: '07',
+    title: 'Raíces del Sur Lodge',
+    desc: 'Aplicación web de arriendo de cabañas vacacionales con diseño mobile-first, modernas animaciones y optimización de rendimiento.',
+    stack: 'HTML5 · CSS3 · JavaScript',
+    tags: ['HTML5', 'CSS3', 'JavaScript'],
+    year: '2026',
+    image: '/projects/screenshot-hotel-sur.avif',
+    url: 'https://raices-del-sur-lodge.vercel.app/',
+  },
+  {
+    id: 'p8',
+    num: '08',
+    title: 'Javier Garin - Portfolio Software Developer',
+    desc: 'Este es un sitio web de portafolio personal moderno e interactivo creado para mostrar habilidades, proyectos y experiencia como desarrollador de software. El sitio está diseñado para ser visualmente atractivo, totalmente responsivo y eficaz.',
+    stack: 'React · Vite · Tailwind CSS · GSAP · i18next',
+    tags: ['React', 'Vite', 'Tailwind', 'GSAP', 'i18next'],
+    year: '2026',
+    image: '/projects/screenshot-portfolio-jg.avif',
+    url: 'https://javiergarin.dev/',
+  },
 ];
 
 export default function ProjectsSection() {
