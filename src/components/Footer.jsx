@@ -38,6 +38,17 @@ export default function Footer() {
           <address className={styles.location}>
             <span aria-label="Ubicación">📍 Chile — Disponible para proyectos remotos</span>
           </address>
+
+          {/* Mercado Público / Compra Ágil */}
+          <div className={styles.govBadge}>
+            <span className={styles.govText}>Atacama Dev participa en</span>
+            <img 
+              src="/LogoChc.png" 
+              alt="Mercado Público - Compra Ágil" 
+              className={styles.govLogo} 
+              loading="lazy"
+            />
+          </div>
         </div>
 
         {/* Columna centro: navegación */}

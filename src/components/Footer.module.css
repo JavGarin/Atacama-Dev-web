@@ -82,6 +82,48 @@
   letter-spacing: 0.02em;
 }
 
+/* Badge Mercado Público */
+.govBadge {
+  margin-top: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 1rem;
+  background: rgba(245, 245, 240, 0.04);
+  border-left: 3px solid var(--red);
+  border-radius: 4px;
+  width: fit-content;
+  transition: background 0.3s ease;
+}
+
+.govBadge:hover {
+  background: rgba(245, 245, 240, 0.08);
+}
+
+.govText {
+  font-family: var(--font-title);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(245, 245, 240, 0.5);
+}
+
+.govLogo {
+  height: 38px;
+  width: auto;
+  object-fit: contain;
+  opacity: 0.75;
+  filter: grayscale(100%) brightness(250%);
+  transition: all 0.3s ease;
+  transform-origin: left center;
+}
+
+.govBadge:hover .govLogo {
+  filter: grayscale(0%) brightness(100%);
+  opacity: 1;
+}
+
 /* Columnas */
 .colTitle {
   font-family: var(--font-title);
