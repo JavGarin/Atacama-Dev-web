@@ -94,6 +94,16 @@ const PROJECTS = [
     image: '/projects/screenshot-portfolio-jg.avif',
     url: 'https://javiergarin.dev/',
   },
+  {
+    id: 'p9',
+    num: '09',
+    title: 'Atacama Track app',
+    desc: 'Atacama Track es una solución integral para la gestión deportiva, diseñada específicamente para el entorno del atletismo. Esta herramienta facilita la administración, el seguimiento y la optimización de actividades y eventos atléticos, consolidando toda la información en un entorno centralizado para el beneficio de usuarios y coordinadores.',
+    stack: 'React · TypeScript · Vite · Supabase · Zustand',
+    tags: ['React', 'TypeScript', 'Vite', 'Supabase', 'Zustand'],
+    year: '2026',
+    image: '/projects/screenshot-AtacamaTrack.avif',
+  },
 ];
 
 export default function ProjectsSection() {
