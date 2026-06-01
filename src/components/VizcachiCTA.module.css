@@ -1,0 +1,145 @@
+.ctaSection {
+  background-color: var(--bg-dark, #0a0a0a);
+  padding: 2rem 1rem;
+  border-top: 1px solid var(--border-color, #333);
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  background: var(--surface-color, #141414);
+  border: 1px solid var(--border-color, #333);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.container:hover {
+  transform: translateY(-2px);
+  border-color: #4ade80; /* Eco green highlight */
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+}
+
+.logo {
+  height: 60px;
+  width: auto;
+  object-fit: contain;
+}
+
+.textContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.title {
+  font-size: 1.25rem;
+  color: var(--text-main, #ffffff);
+  margin: 0;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.description {
+  font-size: 0.95rem;
+  color: var(--text-muted, #a3a3a3);
+  margin: 0;
+  line-height: 1.5;
+  max-width: 450px;
+}
+
+.description strong {
+  color: #4ade80; /* Eco green */
+  font-weight: 600;
+}
+
+.actionArea {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  justify-content: center;
+}
+
+.button {
+  display: inline-block;
+  background-color: #4ade80;
+  color: #0a0a0a;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  border: none;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #22c55e;
+  transform: scale(1.02);
+}
+
+.mascot {
+  height: 70px;
+  width: auto;
+  object-fit: contain;
+  border-radius: 50%;
+  background-color: transparent;
+}
+
+/* Tablet and Desktop Layout */
+@media (min-width: 768px) {
+  .ctaSection {
+    padding: 3rem 2rem;
+  }
+
+  .container {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 2rem 3rem;
+  }
+
+  .content {
+    flex-direction: row;
+    text-align: left;
+    gap: 2rem;
+  }
+
+  .logo {
+    height: 70px;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .description {
+    font-size: 1rem;
+  }
+
+  .actionArea {
+    width: auto;
+    justify-content: flex-end;
+  }
+
+  .mascot {
+    height: 80px;
+  }
+}

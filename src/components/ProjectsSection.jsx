@@ -290,33 +290,35 @@ export default function ProjectsSection() {
                     )}
 
                     {/* Card body */}
-                    <div className={styles.cardTop}>
-                      <span className={styles.cardNum} aria-hidden="true">{proj.num}</span>
-                      <span className={styles.cardYear}>{proj.year}</span>
+                    <div className={styles.cardContent}>
+                      <div className={styles.cardTop}>
+                        <span className={styles.cardNum} aria-hidden="true">{proj.num}</span>
+                        <span className={styles.cardYear}>{proj.year}</span>
+                      </div>
+                      <h3 className={styles.cardTitle}>{proj.title}</h3>
+                      <p className={styles.cardDesc}>{proj.desc}</p>
+                      <footer className={styles.cardFooter}>
+                        <ul className={styles.cardTags} role="list" aria-label="Tecnologías usadas">
+                          {proj.tags.map((t) => (
+                            <li key={t} className={styles.cardTag}>{t}</li>
+                          ))}
+                        </ul>
+                        {proj.url ? (
+                          <a
+                            href={proj.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={styles.cardArrow}
+                            aria-label={`Ir al proyecto ${proj.title}`}
+                            tabIndex={isActive ? 0 : -1}
+                          >
+                            ↗
+                          </a>
+                        ) : (
+                          <span className={styles.cardArrow} aria-hidden="true">↗</span>
+                        )}
+                      </footer>
                     </div>
-                    <h3 className={styles.cardTitle}>{proj.title}</h3>
-                    <p className={styles.cardDesc}>{proj.desc}</p>
-                    <footer className={styles.cardFooter}>
-                      <ul className={styles.cardTags} role="list" aria-label="Tecnologías usadas">
-                        {proj.tags.map((t) => (
-                          <li key={t} className={styles.cardTag}>{t}</li>
-                        ))}
-                      </ul>
-                      {proj.url ? (
-                        <a
-                          href={proj.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className={styles.cardArrow}
-                          aria-label={`Ir al proyecto ${proj.title}`}
-                          tabIndex={isActive ? 0 : -1}
-                        >
-                          ↗
-                        </a>
-                      ) : (
-                        <span className={styles.cardArrow} aria-hidden="true">↗</span>
-                      )}
-                    </footer>
                   </div>
                 </li>
               );
