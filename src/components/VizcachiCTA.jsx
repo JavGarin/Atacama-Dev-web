@@ -27,7 +27,7 @@ export default function VizcachiCTA() {
             className={styles.button}
             aria-label="Saber más sobre el proyecto Vizcachi"
           >
-            Saber más y Donar
+            Saber más
           </a>
           <img 
             src="/gif_vizcachi/vizcachi.gif" 

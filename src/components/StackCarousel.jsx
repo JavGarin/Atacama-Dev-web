@@ -18,6 +18,15 @@ const WORDS = [
   'Hardening',
   'Integración',
   'Backend',
+  'micro-CRM',
+  'CRM',
+  'QA',
+  'IA',
+  'Automatización',
+  'Chatbots-(CaaS)',
+  'BaaS',
+  'e-Commerce',
+  'Testing',
 ];
 
 export default function StackCarousel() {
