@@ -104,6 +104,7 @@
   to   { transform: translateX(0); }
 }
 
+/* Animaciones del marquee — siempre activas */
 .listForward {
   animation: marqueeForward 28s linear infinite;
 }
@@ -112,7 +113,6 @@
   animation: marqueeReverse 22s linear infinite;
 }
 
-/* Carrusel continuo (sin pausa al hover) */
 
 /* Items */
 .item,

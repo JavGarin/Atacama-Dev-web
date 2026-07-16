@@ -97,24 +97,17 @@ button, a {
   color: var(--white);
 }
 
-/* ---------- Cursor personalizado global ---------- */
-/* Clase añadida por Cursor.jsx solo en no-touch devices */
-html.cursor-hidden,
-html.cursor-hidden * {
-  cursor: none !important;
-}
-
-/* ---------- Animación blink (punto) ---------- */
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50%       { opacity: 0; }
-}
 
 /* ---------- Reduced motion ---------- */
+/*
+  Respeta la preferencia de sistema sin destruir animaciones
+  esenciales (marquee, loaders) que usan iteration-count: infinite.
+  Sólo los componentes que quieran detenerse del todo lo hacen
+  con su propia @media interna.
+*/
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+    transition-delay:    0ms   !important;
   }
 }

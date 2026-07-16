@@ -167,23 +167,18 @@ export default function ProjectsSection() {
     return () => clearInterval(interval);
   }, [nextSlide, isPaused, isVisible]);
 
-  // Animaciones de entrada (ScrollTrigger)
+  // Animaciones de entrada (ScrollTrigger) — siempre activas
   useEffect(() => {
-    const prefersReducedMotion = window.matchMedia(
-      '(prefers-reduced-motion: reduce)'
-    ).matches;
+    const heading  = headingRef.current;
+    const carousel = carouselRef.current;
+    if (!heading || !carousel) return;
 
-    if (prefersReducedMotion) {
-      gsap.set([headingRef.current, carouselRef.current], { opacity: 1, y: 0, clearProps: 'transform' });
-      return;
-    }
+    gsap.set(heading,  { opacity: 0, y: 40 });
+    gsap.set(carousel, { opacity: 0, y: 50 });
 
-    gsap.set(headingRef.current, { opacity: 0, y: 40 });
-    gsap.set(carouselRef.current, { opacity: 0, y: 50 });
-
-    gsap.to(headingRef.current, {
+    gsap.to(heading, {
       scrollTrigger: {
-        trigger: headingRef.current,
+        trigger: heading,
         start: 'top 90%',
         once: true,
       },
@@ -193,7 +188,7 @@ export default function ProjectsSection() {
       ease: 'expo.out',
     });
 
-    gsap.to(carouselRef.current, {
+    gsap.to(carousel, {
       scrollTrigger: {
         trigger: sectionRef.current,
         start: 'top 85%',
