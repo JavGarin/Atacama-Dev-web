@@ -1,0 +1,10 @@
+# pnpm workspace configuration
+# https://pnpm.io/pnpm-workspace_yaml
+#
+# Si en el futuro se convierte en monorepo, agregar paquetes aquí:
+# packages:
+#   - 'packages/*'
+#   - 'apps/*'
+
+allowBuilds:
+  esbuild: true
