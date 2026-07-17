@@ -4,6 +4,8 @@ import styles from './StackCarousel.module.css';
 // Palabras del carrusel (ajustadas según indicaciones)
 const WORDS = [
   'Web Apps',
+  'SPA (Single Page Application)',
+  'MPA (Multi-Page Application)',
   'Seguridad',
   'Automatización',
   'Frontend',

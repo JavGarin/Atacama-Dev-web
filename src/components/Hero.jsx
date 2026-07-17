@@ -160,7 +160,7 @@ export default function Hero() {
         <div ref={metaRef} className={styles.meta}>
           <div className={styles.metaLeft}>
             <p className={styles.desc}>
-              Construimos ideas digitales que escalan. Desarrollo web y software a medida para potenciar tu proyecto desde Chile al mundo.
+              Transformamos ideas complejas en plataformas digitales de alto rendimiento. Desarrollamos aplicaciones web y software a medida con arquitectura robusta, diseño de vanguardia y seguridad avanzada desde Chile al mundo.
             </p>
 
             <div className={styles.tags} aria-hidden="true">

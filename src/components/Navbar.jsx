@@ -28,7 +28,13 @@ export default function Navbar() {
       <nav className={styles.inner} aria-label="Navegación principal">
         {/* Logo */}
         <a href="#hero" className={styles.logo} aria-label="Atacama Dev — Inicio">
-          <span className={styles.logoDot} aria-hidden="true" />
+          <span className={styles.logoImageWrapper}>
+            <img
+              src="/atacama_log.png"
+              alt="Atacama Dev"
+              className={styles.logoImage}
+            />
+          </span>
           <span className={styles.logoText}>
             <span>Atacama</span>
             <strong>Dev</strong>

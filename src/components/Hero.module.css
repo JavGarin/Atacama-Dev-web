@@ -179,6 +179,9 @@
   color: rgba(255, 255, 255, 0.85);
   line-height: 1.6;
   max-width: 600px;
+  text-align: justify;
+  text-justify: inter-word;
+  text-wrap: pretty; /* Distribuye el texto de forma elegante y evita viudas */
 }
 
 /* ── Tags ── */
