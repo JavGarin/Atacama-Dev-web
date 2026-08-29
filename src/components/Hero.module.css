@@ -17,7 +17,19 @@
   padding-inline: clamp(1.5rem, 5vw, 6rem);
 }
 
-/* ── Fondo Canvas Three.js ── */
+/* Animación de entrada para el lienzo 3D */
+@keyframes canvasFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Fondo Canvas Three.js */
 .canvasBackground {
   position: absolute;
   inset: 0;
@@ -27,10 +39,11 @@
   height: 100%;
   contain: layout paint;
   opacity: 0;
+  animation: canvasFadeIn 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
   will-change: transform, opacity;
 }
 
-/* ── Máscara de transición y desenfoque inferior de profundidad ── */
+/* Máscara de transición y desenfoque inferior de profundidad */
 .transitionMask {
   position: absolute;
   bottom: 0;
@@ -42,7 +55,19 @@
   z-index: 1;
 }
 
-/* ── Marca e Identidad: Logo + Título + Tagline + CTAs ── */
+/* Animación de entrada para la marca */
+@keyframes brandFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Marca e Identidad: Logo + Título + Tagline + CTAs */
 .brandWrapper {
   position: relative;
   z-index: 2;
@@ -52,7 +77,8 @@
   gap: clamp(1rem, 2vw, 1.4rem);
   max-width: 680px;
   pointer-events: auto;
-  opacity: 0; /* Solución FOUC */
+  opacity: 0;
+  animation: brandFadeIn 1.6s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
   will-change: transform, opacity;
 }
 
@@ -151,7 +177,8 @@
 /* ── Grupo de CTAs (Mobile-First) ── */
 .ctaGroup {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
   gap: 1rem;
   margin-top: 0.5rem;
   width: 100%;

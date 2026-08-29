@@ -1,6 +1,4 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import styles from './ProjectsSection.module.css';
 
 const PROJECTS = [
@@ -113,6 +111,7 @@ export default function ProjectsSection() {
   const [itemsPerView, setItemsPerView] = useState(1);
   const [isPaused, setIsPaused] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const [hasBeenVisible, setHasBeenVisible] = useState(false);
 
   // Resize listener para responsividad
   useEffect(() => {
@@ -151,11 +150,14 @@ export default function ProjectsSection() {
     setCurrentIndex((prev) => (prev <= 0 ? maxIndex : prev - 1));
   }, [maxIndex]);
 
-  // Intersection Observer para pausar si no está visible
+  // Intersection Observer para pausar si no está visible e iniciar animaciones
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         setIsVisible(entry.isIntersecting);
+        if (entry.isIntersecting) {
+          setHasBeenVisible(true);
+        }
       },
       { threshold: 0.1 }
     );
@@ -172,45 +174,6 @@ export default function ProjectsSection() {
     return () => clearInterval(interval);
   }, [nextSlide, isPaused, isVisible]);
 
-  // Animaciones de entrada (ScrollTrigger) — siempre activas
-  useEffect(() => {
-    const heading  = headingRef.current;
-    const carousel = carouselRef.current;
-    if (!heading || !carousel) return;
-
-    gsap.set(heading,  { opacity: 0, y: 40 });
-    gsap.set(carousel, { opacity: 0, y: 50 });
-
-    gsap.to(heading, {
-      scrollTrigger: {
-        trigger: heading,
-        start: 'top 90%',
-        once: true,
-      },
-      opacity: 1,
-      y: 0,
-      duration: 0.7,
-      ease: 'expo.out',
-    });
-
-    gsap.to(carousel, {
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: 'top 85%',
-        once: true,
-      },
-      opacity: 1,
-      y: 0,
-      duration: 0.8,
-      ease: 'expo.out',
-      delay: 0.1,
-    });
-
-    return () => {
-      ScrollTrigger.getAll().forEach((st) => st.kill());
-    };
-  }, []);
-
   return (
     <section
       id="proyectos"
@@ -219,7 +182,10 @@ export default function ProjectsSection() {
       aria-label="Proyectos destacados de Atacama Dev"
     >
       {/* Header */}
-      <div ref={headingRef} className={styles.header}>
+      <div 
+        ref={headingRef} 
+        className={`${styles.header} ${hasBeenVisible ? styles.headerVisible : ''}`}
+      >
         <span className={styles.sectionNum} aria-hidden="true">03</span>
         <div>
           <h2 className={styles.sectionTitle}>Proyectos</h2>
@@ -232,7 +198,7 @@ export default function ProjectsSection() {
       {/* Carousel Container */}
       <div 
         ref={carouselRef} 
-        className={styles.carouselWrapper}
+        className={`${styles.carouselWrapper} ${hasBeenVisible ? styles.carouselVisible : ''}`}
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
         role="group"

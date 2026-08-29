@@ -1,5 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { gsap } from 'gsap';
+import React, { useRef, useState } from 'react';
 import { useProgressivePortal } from '../hooks/useProgressivePortal.js';
 import ProjectPlannerModal from './ProjectPlannerModal.jsx';
 import styles from './Hero.module.css';
@@ -12,44 +11,6 @@ export default function Hero() {
 
   // 1. Integración 3D: El Portal Progresivo (Glassmorphism & Partículas)
   useProgressivePortal(containerRef);
-
-  // 2. Animación cinemática de entrada del lienzo 3D y elementos de marca
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Garantizar estado inicial sutil
-      gsap.set(containerRef.current, {
-        opacity: 0,
-        scale: 0.94
-      });
-
-      gsap.set(brandRef.current, {
-        opacity: 0,
-        x: -24
-      });
-
-      const tl = gsap.timeline({
-        delay: 0.15
-      });
-
-      // Entrada suave y fluida del portal 3D
-      tl.to(containerRef.current, {
-        opacity: 1,
-        scale: 1,
-        duration: 1.8,
-        ease: 'power2.out'
-      }, 0);
-
-      // Entrada altamente fluida y gradual del logo + título y CTAs
-      tl.to(brandRef.current, {
-        opacity: 1,
-        x: 0,
-        duration: 1.6,
-        ease: 'power2.out'
-      }, 0.25);
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
 
   return (
     <>
