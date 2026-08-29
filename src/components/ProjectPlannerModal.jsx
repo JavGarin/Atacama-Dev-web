@@ -60,6 +60,8 @@ export default function ProjectPlannerModal({ isOpen, onClose }) {
     description: ''
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSending, setIsSending] = useState(false);
+  const [sendSuccess, setSendSuccess] = useState(false);
   const [copied, setCopied] = useState(false);
 
   const modalRef = useRef(null);
@@ -90,6 +92,8 @@ export default function ProjectPlannerModal({ isOpen, onClose }) {
     if (isOpen) {
       setStep(1);
       setIsSubmitted(false);
+      setIsSending(false);
+      setSendSuccess(false);
       setCopied(false);
     }
   }, [isOpen]);
@@ -108,7 +112,7 @@ export default function ProjectPlannerModal({ isOpen, onClose }) {
     if (step < 3) {
       setStep((prev) => prev + 1);
     } else {
-      setIsSubmitted(true);
+      handleSubmitProposal();
     }
   };
 
@@ -129,6 +133,43 @@ export default function ProjectPlannerModal({ isOpen, onClose }) {
 
 • Descripción de la Idea:
 ${formData.description || 'Sin detalles adicionales.'}`;
+  };
+
+  // Enviar propuesta automáticamente por HTTP a contacto.atacamadev@gmail.com
+  const handleSubmitProposal = async () => {
+    setIsSending(true);
+
+    try {
+      const response = await fetch('https://formsubmit.co/ajax/contacto.atacamadev@gmail.com', {
+        method: 'POST',
+        headers: { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          _subject: `✦ Nueva Propuesta: ${currentTypeObj?.title || 'Proyecto'} — ${formData.name}`,
+          Cliente: formData.name,
+          Email: formData.email,
+          Telefono_WhatsApp: formData.phone || 'No especificado',
+          Tipo_de_Solucion: currentTypeObj?.title,
+          Etapa_del_Proyecto: currentStageObj?.title,
+          Descripcion: formData.description || 'Sin descripción adicional',
+          _template: 'table'
+        })
+      });
+
+      if (response.ok) {
+        setSendSuccess(true);
+      } else {
+        setSendSuccess(false);
+      }
+    } catch (err) {
+      console.warn('Envío HTTP fallido, habilitando modo directo:', err);
+      setSendSuccess(false);
+    } finally {
+      setIsSending(false);
+      setIsSubmitted(true);
+    }
   };
 
   const handleSendEmail = () => {
@@ -333,13 +374,24 @@ ${formData.description || 'Sin detalles adicionales.'}`;
               )}
             </>
           ) : (
-            /* PASO 4: Éxito & Canal de envío */
+            /* PASO 4: Éxito & Confirmación de envío */
             <div className={styles.successContainer}>
-              <div className={styles.successIconBadge}>✦</div>
-              <h3 className={styles.successTitle}>¡Propuesta configurada con éxito!</h3>
+              <div className={styles.successIconBadge}>
+                {sendSuccess ? '✓' : '✦'}
+              </div>
+              <h3 className={styles.successTitle}>
+                {sendSuccess ? '¡Propuesta enviada exitosamente!' : '¡Propuesta lista para enviar!'}
+              </h3>
               <p className={styles.successDesc}>
-                Hemos estructurado tu idea para <strong>{currentTypeObj?.title}</strong> ({currentStageObj?.title}).
-                Elige el medio de tu preferencia para enviárnosla:
+                {sendSuccess ? (
+                  <>
+                    Hemos recibido automáticamente tu propuesta para <strong>{currentTypeObj?.title}</strong> enviada a <strong>contacto.atacamadev@gmail.com</strong>. Te responderemos a <strong>{formData.email}</strong> a la brevedad.
+                  </>
+                ) : (
+                  <>
+                    Hemos estructurado tu idea para <strong>{currentTypeObj?.title}</strong>. Puedes enviárnosla directamente por correo o copiar la propuesta:
+                  </>
+                )}
               </p>
 
               <div className={styles.actionButtonsSuccess}>
@@ -348,7 +400,7 @@ ${formData.description || 'Sin detalles adicionales.'}`;
                   onClick={handleSendEmail}
                   className={styles.btnPrimarySuccess}
                 >
-                  ✉ Enviar por Correo Electrónico
+                  ✉ Abrir cliente de Correo (contacto.atacamadev@gmail.com)
                 </button>
                 <button
                   type="button"
@@ -360,7 +412,7 @@ ${formData.description || 'Sin detalles adicionales.'}`;
               </div>
 
               <div className={styles.summaryBox}>
-                <span className={styles.summaryLabel}>Vista previa de tu solicitud:</span>
+                <span className={styles.summaryLabel}>Resumen de tu solicitud:</span>
                 <pre className={styles.summaryText}>{getStructuredProposal()}</pre>
               </div>
             </div>
@@ -374,6 +426,7 @@ ${formData.description || 'Sin detalles adicionales.'}`;
               <button 
                 type="button" 
                 onClick={handlePrev} 
+                disabled={isSending}
                 className={styles.btnBack}
               >
                 ← Atrás
@@ -385,10 +438,10 @@ ${formData.description || 'Sin detalles adicionales.'}`;
             <button
               type="button"
               onClick={handleNext}
-              disabled={step === 3 && !canProceedStep3}
+              disabled={(step === 3 && !canProceedStep3) || isSending}
               className={styles.btnNext}
             >
-              {step === 3 ? 'Generar Propuesta ✦' : 'Continuar →'}
+              {isSending ? 'Enviando Propuesta...' : step === 3 ? 'Enviar Propuesta ✦' : 'Continuar →'}
             </button>
           </div>
         )}
