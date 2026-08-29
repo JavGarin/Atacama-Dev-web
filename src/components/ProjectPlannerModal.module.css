@@ -1,0 +1,501 @@
+/* ============================================================
+   ProjectPlannerModal.module.css
+   Estilo Mobile-First: Bottom Sheet táctil en mobile -> Modal Glassmorphism en Desktop
+   Paleta: Base #1E2C42 · Dorado #C89F57 · Blanco/Crema #FFFFFF/#F5F0EB · Grafito #0A0A0A
+   ============================================================ */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(10, 10, 10, 0.65);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: flex-end; /* Mobile default: Bottom sheet */
+  justify-content: center;
+  padding: 0;
+  animation: fadeIn 0.24s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ── Modal / Bottom-Sheet Container ── */
+.modalSheet {
+  width: 100%;
+  max-height: 90svh;
+  display: flex;
+  flex-direction: column;
+  background: #FFFFFF;
+  border-top-left-radius: 1.5rem;
+  border-top-right-radius: 1.5rem;
+  box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  padding-bottom: env(safe-area-inset-bottom, 1rem);
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* ── Encabezado ── */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.25rem 1rem;
+  border-bottom: 1px solid rgba(30, 44, 66, 0.08);
+}
+
+.headerTitleGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.badgeStep {
+  display: inline-flex;
+  align-items: center;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--gold-dark, #A8813E);
+}
+
+.title {
+  font-family: 'Rubik', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #1E2C42;
+  margin: 0;
+  line-height: 1.25;
+}
+
+.closeButton {
+  background: rgba(30, 44, 66, 0.06);
+  border: none;
+  border-radius: 50%;
+  width: 2.25rem;
+  height: 2.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  color: #1E2C42;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+  touch-action: manipulation;
+}
+
+.closeButton:active {
+  transform: scale(0.92);
+  background: rgba(30, 44, 66, 0.12);
+}
+
+/* ── Barra de Progreso ── */
+.progressBarTrack {
+  width: 100%;
+  height: 3px;
+  background: rgba(30, 44, 66, 0.06);
+  overflow: hidden;
+}
+
+.progressBarFill {
+  height: 100%;
+  background: linear-gradient(90deg, #1E2C42, #C89F57);
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Cuerpo del Modal ── */
+.body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1.25rem;
+  -webkit-overflow-scrolling: touch;
+}
+
+.stepContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.stepSubtitle {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.95rem;
+  color: rgba(30, 44, 66, 0.85);
+  margin-bottom: 0.25rem;
+}
+
+/* ── Tarjetas de Opciones (Paso 1 & 2) ── */
+.gridOptions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.optionCard {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.95rem 1rem;
+  background: #FAFAFA;
+  border: 1.5px solid rgba(30, 44, 66, 0.1);
+  border-radius: 0.85rem;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  touch-action: manipulation;
+  min-height: 3.25rem;
+}
+
+.optionCard:active {
+  transform: scale(0.98);
+}
+
+.optionCardActive {
+  background: rgba(30, 44, 66, 0.04);
+  border-color: #1E2C42;
+  box-shadow: 0 4px 14px rgba(30, 44, 66, 0.08);
+}
+
+.optionIcon {
+  font-size: 1.35rem;
+  flex-shrink: 0;
+}
+
+.optionText {
+  flex: 1;
+}
+
+.optionTitle {
+  font-family: 'Rubik', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #1E2C42;
+  margin: 0 0 0.15rem 0;
+}
+
+.optionDesc {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.8rem;
+  color: #6B6B6B;
+  margin: 0;
+  line-height: 1.35;
+}
+
+.checkbox {
+  width: 1.35rem;
+  height: 1.35rem;
+  border-radius: 50%;
+  background: #1E2C42;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+/* ── Formulario (Paso 3) ── */
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 0.75rem;
+}
+
+.formRow {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.label {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #1E2C42;
+}
+
+.required {
+  color: #D32F2F;
+}
+
+.optional {
+  font-size: 0.75rem;
+  color: #888;
+  font-weight: normal;
+}
+
+.input,
+.textarea {
+  width: 100%;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.95rem;
+  padding: 0.75rem 0.9rem;
+  background: #FAFAFA;
+  border: 1.5px solid rgba(30, 44, 66, 0.15);
+  border-radius: 0.65rem;
+  color: #0A0A0A;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input:focus,
+.textarea:focus {
+  border-color: #1E2C42;
+  background: #FFFFFF;
+  box-shadow: 0 0 0 3px rgba(30, 44, 66, 0.1);
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 4.5rem;
+}
+
+/* ── Pantalla de Éxito (Paso 4) ── */
+.successContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1rem 0;
+  gap: 0.75rem;
+}
+
+.successIconBadge {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  background: #1E2C42;
+  color: #C89F57;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.65rem;
+  box-shadow: 0 8px 24px rgba(30, 44, 66, 0.2);
+}
+
+.successTitle {
+  font-family: 'Rubik', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1E2C42;
+  margin: 0;
+}
+
+.successDesc {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.9rem;
+  color: #555;
+  line-height: 1.45;
+  max-width: 440px;
+}
+
+.actionButtonsSuccess {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+.btnPrimarySuccess {
+  width: 100%;
+  min-height: 3rem;
+  background: #1E2C42;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 0.65rem;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: background 0.2s ease, transform 0.15s ease;
+  touch-action: manipulation;
+}
+
+.btnPrimarySuccess:active {
+  transform: scale(0.98);
+}
+
+.btnSecondarySuccess {
+  width: 100%;
+  min-height: 2.85rem;
+  background: #F0F4F8;
+  color: #1E2C42;
+  border: 1px solid rgba(30, 44, 66, 0.15);
+  border-radius: 0.65rem;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+  touch-action: manipulation;
+}
+
+.summaryBox {
+  width: 100%;
+  margin-top: 0.75rem;
+  background: #F8F9FA;
+  border: 1px dashed rgba(30, 44, 66, 0.2);
+  border-radius: 0.65rem;
+  padding: 0.85rem;
+  text-align: left;
+}
+
+.summaryLabel {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #1E2C42;
+  display: block;
+  margin-bottom: 0.35rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.summaryText {
+  font-family: monospace;
+  font-size: 0.78rem;
+  color: #333;
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* ── Footer de Navegación ── */
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  border-top: 1px solid rgba(30, 44, 66, 0.08);
+  background: #FAFAFA;
+}
+
+.btnBack {
+  background: none;
+  border: none;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #6B6B6B;
+  cursor: pointer;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  transition: color 0.2s ease;
+  touch-action: manipulation;
+}
+
+.btnBack:hover {
+  color: #1E2C42;
+}
+
+.btnNext {
+  background: #1E2C42;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 0.65rem;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  touch-action: manipulation;
+  min-height: 2.85rem;
+  box-shadow: 0 4px 12px rgba(30, 44, 66, 0.15);
+}
+
+.btnNext:hover:not(:disabled) {
+  background: #141E2D;
+  box-shadow: 0 6px 16px rgba(30, 44, 66, 0.25);
+}
+
+.btnNext:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.btnNext:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ════════════════════════════════
+   DESKTOP RESPONSIVE (≥ 768px)
+   ════════════════════════════════ */
+@media (min-width: 768px) {
+  .overlay {
+    align-items: center; /* Centrado en Desktop */
+    padding: 2rem;
+  }
+
+  .modalSheet {
+    width: 100%;
+    max-width: 620px;
+    max-height: 85vh;
+    border-radius: 1.25rem;
+    animation: zoomIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes zoomIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95) translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  .gridOptions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.85rem;
+  }
+
+  .formRow {
+    flex-direction: row;
+  }
+
+  .formRow .formGroup {
+    flex: 1;
+  }
+
+  .actionButtonsSuccess {
+    flex-direction: row;
+  }
+
+  .btnPrimarySuccess,
+  .btnSecondarySuccess {
+    flex: 1;
+  }
+}

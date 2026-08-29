@@ -24,7 +24,7 @@
   font-family: var(--font-title);
   font-size: 0.7rem;
   font-weight: 700;
-  color: var(--red);
+  color: var(--gold);
   letter-spacing: 0.15em;
   margin-top: 0.35rem;
 }
@@ -53,6 +53,11 @@
   max-width: var(--container);
   margin-inline: auto;
   position: relative;
+  cursor: grab;
+}
+
+.carouselWrapper:active {
+  cursor: grabbing;
 }
 
 .carouselViewport {
@@ -159,7 +164,7 @@
   font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 0.15em;
-  color: var(--red);
+  color: var(--gold);
   transition: color 0.22s ease;
 }
 
@@ -235,7 +240,7 @@
 }
 
 .slideActive .card:hover .cardArrow {
-  color: var(--red);
+  color: var(--gold);
   transform: translate(2px, -2px);
 }
 
@@ -378,6 +383,6 @@
 }
 
 .dotActive {
-  background: var(--red);
+  background: var(--gold);
   transform: scale(1.4);
 }

@@ -3,8 +3,6 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import styles from './ProjectsSection.module.css';
 
-gsap.registerPlugin(ScrollTrigger);
-
 const PROJECTS = [
   {
     id: 'p1',
@@ -118,22 +116,29 @@ export default function ProjectsSection() {
 
   // Resize listener para responsividad
   useEffect(() => {
+    let resizeTimer;
     const handleResize = () => {
-      let views = 1;
-      if (window.innerWidth >= 1024) views = 3;
-      else if (window.innerWidth >= 768) views = 2;
-      setItemsPerView(views);
-      
-      // Ajustar index si al redimensionar quedamos fuera de rango
-      setCurrentIndex((prev) => {
-        const maxIdx = Math.max(0, PROJECTS.length - views);
-        return prev > maxIdx ? maxIdx : prev;
-      });
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        let views = 1;
+        if (window.innerWidth >= 1024) views = 3;
+        else if (window.innerWidth >= 768) views = 2;
+        setItemsPerView(views);
+        
+        // Ajustar index si al redimensionar quedamos fuera de rango
+        setCurrentIndex((prev) => {
+          const maxIdx = Math.max(0, PROJECTS.length - views);
+          return prev > maxIdx ? maxIdx : prev;
+        });
+      }, 200);
     };
     
     handleResize(); // Init
     window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    return () => {
+      clearTimeout(resizeTimer);
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
 
   const maxIndex = Math.max(0, PROJECTS.length - itemsPerView);
@@ -334,7 +339,7 @@ export default function ProjectsSection() {
           <div className={styles.dots} role="tablist">
             {Array.from({ length: maxIndex + 1 }).map((_, i) => (
               <button
-                key={i}
+                key={`dot-${i}`}
                 role="tab"
                 className={`${styles.dot} ${currentIndex === i ? styles.dotActive : ''}`}
                 onClick={() => setCurrentIndex(i)}

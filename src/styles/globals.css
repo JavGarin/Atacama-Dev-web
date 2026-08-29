@@ -1,8 +1,41 @@
 /* ============================================================
    ATACAMA DEV — globals.css
    Brutalista-Minimalista | Paleta 60%-30%-10%
-   Blanco #F5F5F0 · Negro #0A0A0A · Rojo #E63329
+   Blanco #FFFFFF / Crema #F5F0EB · Negro #0A0A0A · Dorado/Arena #C89F57
    ============================================================ */
+
+/* ---------- Tipografías Locales ---------- */
+@font-face {
+  font-family: 'Rubik';
+  src: url('/Rubik/Rubik-VariableFont_wght.ttf') format('truetype-variations');
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Rubik';
+  src: url('/Rubik/Rubik-Italic-VariableFont_wght.ttf') format('truetype-variations');
+  font-weight: 300 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('/Roboto/Roboto-VariableFont_wdth,wght.ttf') format('truetype-variations');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('/Roboto/Roboto-Italic-VariableFont_wdth,wght.ttf') format('truetype-variations');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
 
 /* ---------- Reset moderno ---------- */
 *, *::before, *::after {
@@ -13,31 +46,35 @@
 
 /* ---------- Tokens de diseño ---------- */
 :root {
-  /* Paleta 60-30-10 */
-  --white:      #F5F5F0;
-  --white-soft: #EBEBE5;
-  --black:      #0A0A0A;
-  --black-mid:  #1A1A1A;
-  --red:        #E63329;
-  --red-dark:   #C0271E;
-  --gray:       #6B6B6B;
-  --gray-light: #A0A0A0;
+  /* Paleta Atacama: Dorado #C89F57 · Crema/Blanco #FFFFFF/#F5F0EB · Negro #0A0A0A */
+  --white:        #FFFFFF;
+  --white-soft:   #F5F0EB;
+  --black:        #0A0A0A;
+  --black-mid:    #141414;
+  --gold:         #C89F57;
+  --gold-dark:    #A8813E;
+  --gold-light:   #D9B26A;
+  --accent:       #C89F57;
+  --gray:         #6B6B6B;
+  --gray-light:   #A0A0A0;
 
   /* Tipografía */
-  --font-title: 'Space Grotesk', system-ui, sans-serif;
-  --font-body:  'Inter', system-ui, sans-serif;
+  --font-brand:   'Rubik', system-ui, sans-serif;
+  --font-title:   'Roboto', system-ui, sans-serif;
+  --font-body:    'Roboto', system-ui, sans-serif;
+  --font-mono:    'Roboto', system-ui, sans-serif;
 
   /* Bordes brutalistas */
-  --border:     2px solid var(--black);
-  --border-w:   3px solid var(--white);
+  --border:       2px solid var(--black);
+  --border-w:     3px solid var(--white);
 
   /* Easing personalizado */
-  --ease-brutal: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-snap:   cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-brutal:  cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-snap:    cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
   /* Espaciado */
-  --section-pad: clamp(5rem, 10vw, 8rem);
-  --container:   1200px;
+  --section-pad:  clamp(5rem, 10vw, 8rem);
+  --container:    1200px;
 }
 
 /* ---------- Base ---------- */
@@ -73,7 +110,7 @@ button, a {
 
 /* Accesibilidad: foco visible */
 *:focus-visible {
-  outline: 3px solid var(--red);
+  outline: 3px solid var(--gold);
   outline-offset: 3px;
 }
 
@@ -88,23 +125,16 @@ button, a {
   background: var(--black);
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--red);
+  background: var(--gold);
 }
 
 /* ---------- Selección de texto ---------- */
 ::selection {
-  background: var(--red);
-  color: var(--white);
+  background: var(--gold);
+  color: var(--black);
 }
 
-
 /* ---------- Reduced motion ---------- */
-/*
-  Respeta la preferencia de sistema sin destruir animaciones
-  esenciales (marquee, loaders) que usan iteration-count: infinite.
-  Sólo los componentes que quieran detenerse del todo lo hacen
-  con su propia @media interna.
-*/
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     transition-duration: 0.01ms !important;

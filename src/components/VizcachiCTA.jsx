@@ -15,14 +15,14 @@ export default function VizcachiCTA() {
           <div className={styles.textContent}>
             <h2 id="vizcachi-title" className={styles.title}>Apoya el Reciclaje en Atacama</h2>
             <p className={styles.description}>
-              Únete a <strong>Vizcachi</strong> y contribuye al reciclaje de pilas y productos electrónicos. Protejamos juntos nuestra región. Además, te invitamos a completar nuestra encuesta para ayudarnos a preparar su posible llegada.
+              Únete a <strong>Vizcachi</strong> y contribuye al reciclaje de pilas. Protejamos juntos nuestra región. Además, te invitamos a completar nuestra encuesta para ayudarnos a preparar su llegada.
             </p>
           </div>
         </div>
         <div className={styles.actionArea}>
           <div className={styles.buttonGroup}>
             <a 
-              href="https://vizcachi.netlify.app/" 
+              href="https://vizcachi.vercel.app/" 
               target="_blank" 
               rel="noopener noreferrer" 
               className={styles.button}

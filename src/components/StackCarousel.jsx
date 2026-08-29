@@ -50,7 +50,7 @@ export default function StackCarousel() {
       {/* Descripción profesional */}
       <div className={styles.intro}>
         <p className={styles.introText}>
-          Somos <strong>Atacama Dev</strong> — una empresa chilena de desarrollo de software.
+          Somos <strong>ATACAMA DEV</strong> — una empresa chilena de desarrollo de software.
           {' '}Construimos sitios web, aplicaciones y sistemas a medida con foco en
           {' '}<strong>arquitectura sólida, seguridad activa y prevención de ataques</strong>.
           {' '}Cada proyecto se entrega con alto rendimiento, código limpio y una

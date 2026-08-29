@@ -1,6 +1,6 @@
 /* ============================================================
-   Hero.module.css — Single Line Minimalist · 2026
-   Paleta: 60% #F5F5F0 · 30% #0A0A0A · 10% #E63329
+   Hero.module.css — Concepto: El Portal Progresivo 3D
+   Paleta: Blanco #FFFFFF · Base #1E2C42 · Dorado #C89F57 · Gris #6B6B6B
    ============================================================ */
 
 /* ── Sección raíz ── */
@@ -8,308 +8,265 @@
   position: relative;
   min-height: 100svh;
   display: flex;
-  align-items: center;
-  /* Fondo superpuesto y background image */
-  background: 
-    linear-gradient(rgba(10, 10, 10, 0.65), rgba(10, 10, 10, 0.8)),
-    url('/wallpaperpage.jpeg');
-  background-size: cover;
-  background-position: center;
+  align-items: flex-start;
+  justify-content: flex-start;
+  background: var(--white);
   overflow: hidden;
-  padding:
-    clamp(7rem, 12vw, 10rem)
-    clamp(1.5rem, 6vw, 5rem)
-    clamp(4rem, 8vw, 6rem);
+  padding-top: clamp(5.5rem, 14vh, 9rem);
+  padding-bottom: 5rem;
+  padding-inline: clamp(1.5rem, 5vw, 6rem);
 }
 
-/* ── Cuadrícula de fondo sutil ── */
-.grid {
+/* ── Fondo Canvas Three.js ── */
+.canvasBackground {
   position: absolute;
   inset: 0;
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-  background-size: 52px 52px;
-  pointer-events: none;
   z-index: 0;
-}
-
-/* ── Barra roja superior ── */
-.accentLine {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 5px;
-  background: var(--red);
-  transform-origin: left center;
-  z-index: 2;
-}
-
-/* ── Contenedor principal ── */
-.content {
-  position: relative;
-  z-index: 1;
-  max-width: var(--container);
-  width: 100%;
-  margin-inline: auto;
-  display: flex;
-  flex-direction: column;
-}
-
-/* ── Fila superior: badge ── */
-.topRow {
-  margin-bottom: 2rem;
-}
-
-/* ── Badge ── */
-.badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-family: var(--font-title);
-  font-size: 0.67rem;
-  font-weight: 700;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.8);
-  border: 1.5px solid rgba(255, 255, 255, 0.2);
-  padding: 0.3rem 0.8rem;
-  width: fit-content;
-}
-
-.badgeDot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--red);
-  flex-shrink: 0;
-  animation: blink 2s step-end infinite;
-}
-
-/* ── Título principal (Una sola línea) ── */
-.title {
-  font-family: var(--font-title);
-  /* Ajustado para mantenerse en una línea en casi cualquier viewport */
-  font-size: clamp(2.8rem, 14vw, 12rem);
-  font-weight: 900;
-  line-height: 0.95;
-  letter-spacing: -0.05em;
-  color: var(--white);
-  margin-bottom: 1rem;
-  white-space: nowrap; /* Evita el salto de línea */
-}
-
-.titleLine {
-  display: block;
-  overflow: hidden;
-}
-
-.ltr {
-  display: inline-block;
-}
-
-.titleSpace {
-  display: inline-block;
-}
-
-.titleAccent {
-  color: var(--red);
-  display: inline-block;
-  transform: translateY(0.06em); /* Ajuste sutil para el título grande */
-}
-
-/* ── Tagline alineada ── */
-.tagline {
-  font-family: var(--font-body);
-  font-size: clamp(0.9rem, 1.8vw, 1.2rem);
-  font-weight: 600;
-  color: var(--red);
-  letter-spacing: 0.05em;
-  margin-bottom: clamp(2rem, 4.5vw, 4rem);
-  text-transform: uppercase;
-  padding: 0.2rem 0.6rem;
-  width: fit-content;
-  
-  /* Preparación para efecto de carga (relleno) */
-  background-image: linear-gradient(var(--red), var(--red));
-  background-repeat: no-repeat;
-  background-size: var(--fill-width, 0%) 100%;
-  background-position: left center;
-}
-
-/* ── Divisor horizontal ── */
-.divider {
-  width: 100%;
-  height: 2px;
-  background: rgba(255, 255, 255, 0.15);
-  margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
-}
-
-/* ── Fila meta ── */
-.meta {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 3rem;
-  flex-wrap: wrap;
-}
-
-.metaLeft {
-  flex: 1 1 500px;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-.metaRight {
-  flex: 0 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.85rem;
-  padding-top: 0.25rem;
-}
-
-/* ── Descripción ── */
-.desc {
-  font-family: var(--font-body);
-  font-size: clamp(1rem, 1.8vw, 1.15rem);
-  font-weight: 400;
-  color: rgba(255, 255, 255, 0.85);
-  line-height: 1.6;
-  max-width: 600px;
-  text-align: justify;
-  text-justify: inter-word;
-  text-wrap: pretty; /* Distribuye el texto de forma elegante y evita viudas */
-}
-
-/* ── Tags ── */
-.tags {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 0.45rem;
-}
-
-.tag {
-  font-family: var(--font-title);
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  color: var(--gray-light);
-  text-transform: uppercase;
-}
-
-.tagSep {
-  width: 3px;
-  height: 3px;
-  border-radius: 50%;
-  background: var(--gray-light);
-}
-
-/* ── CTA primario ── */
-.ctaPrimary {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.65rem;
-  font-family: var(--font-title);
-  font-size: 0.9rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--black);
-  background: var(--white);
-  padding: 1rem 2rem;
-  border: 2px solid var(--white);
-  transition: all 0.2s var(--ease-brutal);
-}
-
-.ctaPrimary:hover {
-  background: transparent;
-  color: var(--white);
-  box-shadow: 6px 6px 0 var(--red);
-  transform: translate(-3px, -3px);
-}
-
-.ctaSecondary {
-  font-family: var(--font-title);
-  font-size: 0.9rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.7);
-  padding: 0.2rem 0;
-  border-bottom: 2px solid transparent;
-  transition: all 0.2s ease;
-}
-
-.ctaSecondary:hover {
-  color: var(--white);
-  border-color: var(--white);
-}
-
-/* ── Número decorativo ── */
-.decorNum {
-  position: absolute;
-  bottom: 2rem;
-  right: clamp(1.5rem, 5vw, 4rem);
-  font-family: var(--font-title);
-  font-size: clamp(5rem, 14vw, 11rem);
-  font-weight: 900;
-  color: rgba(255, 255, 255, 0.04);
-  line-height: 1;
   pointer-events: none;
-  user-select: none;
-  letter-spacing: -0.05em;
+  width: 100%;
+  height: 100%;
+  contain: layout paint;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+/* ── Máscara de transición y desenfoque inferior de profundidad ── */
+.transitionMask {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: clamp(5rem, 14vh, 9rem);
+  background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.95) 80%, #FFFFFF 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ── Marca e Identidad: Logo + Título + Tagline + CTAs ── */
+.brandWrapper {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: clamp(1rem, 2vw, 1.4rem);
+  max-width: 680px;
+  pointer-events: auto;
+  opacity: 0; /* Solución FOUC */
+  will-change: transform, opacity;
+}
+
+/* ── Micro-badge de Estado / Disponibilidad ── */
+.statusBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.35rem 0.85rem;
+  background: rgba(30, 44, 66, 0.05);
+  border: 1px solid rgba(30, 44, 66, 0.12);
+  border-radius: 999px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.statusBadge:hover {
+  border-color: rgba(200, 159, 87, 0.4);
+}
+
+.pulseDot {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: #10B981; /* Verde esmeralda vivo de disponibilidad */
+  box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6);
+  animation: pulseGreen 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulseGreen {
+  0% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
+}
+
+.statusText {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #1E2C42;
+}
+
+/* ── Encabezado Logo + Título ── */
+.brandHeader {
+  display: flex;
+  align-items: flex-end;
+  gap: clamp(1rem, 2.5vw, 1.75rem);
+}
+
+.logo {
+  height: clamp(3.5rem, 8vw, 6rem);
+  width: auto;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.08));
+}
+
+.title {
+  font-family: 'Rubik', sans-serif;
+  font-size: clamp(2.5rem, 6.5vw, 5.2rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #1E2C42;
+  line-height: 0.95;
+  white-space: nowrap;
+}
+
+.tagline {
+  font-family: 'Roboto', sans-serif;
+  font-size: clamp(1.02rem, 1.7vw, 1.28rem);
+  font-weight: 400;
+  line-height: 1.55;
+  color: rgba(10, 10, 10, 0.76);
+  letter-spacing: -0.01em;
+  max-width: 580px;
+  text-wrap: pretty;
+}
+
+.taglineAccent {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  color: #1E2C42;
+  position: relative;
+  background: linear-gradient(180deg, transparent 65%, rgba(200, 159, 87, 0.28) 65%);
+  padding: 0 2px;
+}
+
+/* ── Grupo de CTAs (Mobile-First) ── */
+.ctaGroup {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 0.5rem;
+  width: 100%;
+}
+
+.primaryCta {
+  background: #1E2C42;
+  color: #FFFFFF;
+  border: 1px solid #1E2C42;
+  border-radius: 0.75rem;
+  padding: 0.85rem 1.6rem;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(30, 44, 66, 0.2);
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  touch-action: manipulation;
+  min-height: 3rem;
+}
+
+.primaryCta:hover {
+  background: #141E2D;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(30, 44, 66, 0.3);
+}
+
+.primaryCta:active {
+  transform: scale(0.97);
+}
+
+.ctaSparkle {
+  color: #C89F57;
+  font-size: 1.05rem;
+  transition: transform 0.25s ease;
+}
+
+.primaryCta:hover .ctaSparkle {
+  transform: rotate(20deg) scale(1.15);
+}
+
+.secondaryCta {
+  color: #1E2C42;
+  text-decoration: none;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  transition: all 0.2s ease;
+  touch-action: manipulation;
+}
+
+.secondaryCta:hover {
+  background: rgba(30, 44, 66, 0.05);
+  color: #A8813E;
+}
+
+.arrowIcon {
+  font-size: 1rem;
+  transition: transform 0.2s ease;
+}
+
+.secondaryCta:hover .arrowIcon {
+  transform: translateY(2px);
 }
 
 /* ════════════════════════════════
-   RESPONSIVE
+   RESPONSIVE (Mobile First)
    ════════════════════════════════ */
-
-@media (max-width: 800px) {
-  .title {
-    font-size: clamp(2.5rem, 15vw, 6rem);
-  }
-}
 
 @media (max-width: 600px) {
   .hero {
-    /* Ajuste para que el badge baje un poco y no tope con el navbar */
-    padding-top: 5.5rem; 
-    padding-bottom: 2rem;
+    padding-inline: 1.25rem;
+    padding-top: 5rem;
+    padding-bottom: 3.5rem;
   }
 
-  .topRow {
-    /* Bajando explícitamente el badge */
-    margin-top: 3px; 
+  .brandHeader {
+    gap: 0.75rem;
   }
 
-  .meta {
+  .logo {
+    height: clamp(2.8rem, 12vw, 4rem);
+  }
+
+  .title {
+    font-size: clamp(2rem, 9vw, 3rem);
+  }
+
+  .tagline {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .ctaGroup {
     flex-direction: column;
-    gap: 1.25rem;
-  }
-  
-  .desc {
-    max-width: 100%;
-    text-align: center;
+    align-items: stretch;
+    gap: 0.75rem;
   }
 
-  .ctaPrimary {
-    width: fit-content;
-    padding: 0.75rem 1.5rem;
-    font-size: 0.8rem;
-  }
-
-  .metaRight {
+  .primaryCta {
     width: 100%;
-    padding-top: 0;
-    align-items: center; /* Centrar los botones */
+    min-height: 3.2rem;
   }
 
-  .ctaSecondary {
-    width: fit-content;
-    text-align: center;
+  .secondaryCta {
+    width: 100%;
+    justify-content: center;
   }
 }

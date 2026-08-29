@@ -1,5 +1,5 @@
 /* ============================================================
-   Navbar.module.css — Navegación flotante brutalista
+   Navbar.module.css — Navegación flotante brutalista clara
    ============================================================ */
 
 .navbar {
@@ -8,45 +8,43 @@
   left: 50%;
   transform: translateX(-50%);
   z-index: 100;
-  width: min(92vw, 1100px);
-  background: rgba(10, 10, 10, 0.85);
+  width: min(92vw, 680px);
+  background: rgba(255, 255, 255, 0.88);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  border: 2px solid transparent;
-  border-radius: 4px;
+  border: 2px solid rgba(10, 10, 10, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  border-radius: 8px; /* Bordes un poco más suavizados para el estilo mini */
+  max-height: 500px;
   transition:
     border-color 0.25s ease,
     box-shadow 0.25s ease,
-    background 0.25s ease;
+    background 0.25s ease,
+    max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .navbar.scrolled {
-  border-color: var(--red);
-  box-shadow: 4px 4px 0 var(--red);
-  background: rgba(10, 10, 10, 0.97);
+  border-color: var(--black);
+  box-shadow: 4px 4px 0 var(--gold);
+  background: rgba(255, 255, 255, 0.98);
 }
 
 .inner {
   display: flex;
   align-items: center;
   gap: 2rem;
-  padding: 0.85rem 1.5rem;
+  padding: 0.55rem 1.4rem;
+  min-height: 54px;
 }
 
 /* Logo */
 .logo {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 0.65rem;
-  font-family: var(--font-title);
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--white);
-  letter-spacing: -0.02em;
   text-decoration: none;
   flex-shrink: 0;
   margin-right: auto;
-  transition: color 0.18s ease;
+  transition: opacity 0.18s ease;
 }
 
 .logoImageWrapper {
@@ -54,76 +52,18 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: 24px;
+  height: 38px;
 }
 
 .logoImage {
   height: 100%;
   width: auto;
   object-fit: contain;
-  transition: transform 0.4s var(--ease-brutal), filter 0.4s ease;
-}
-
-/* Efecto Holográfico sobre la silueta del logo */
-.logoImageWrapper::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 0, 128, 0.45) 0%,
-    rgba(0, 255, 255, 0.45) 30%,
-    rgba(255, 255, 0, 0.45) 60%,
-    rgba(255, 0, 128, 0.45) 100%
-  );
-  background-size: 200% 200%;
-  background-position: 0% 0%;
-  mix-blend-mode: color-dodge;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease, background-position 0.5s ease;
-
-  /* Máscara usando la forma del isotipo transparente */
-  -webkit-mask-image: url('/atacama_log.png');
-  mask-image: url('/atacama_log.png');
-  -webkit-mask-size: contain;
-  mask-size: contain;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  -webkit-mask-position: center;
-  mask-position: center;
-}
-
-.logo:hover {
-  color: var(--white);
+  transition: transform 0.3s var(--ease-brutal);
 }
 
 .logo:hover .logoImage {
-  transform: scale(1.18);
-  filter: brightness(1.2) contrast(1.15) drop-shadow(0 0 6px rgba(230, 51, 41, 0.35));
-}
-
-.logo:hover .logoImageWrapper::after {
-  opacity: 1;
-  background-position: 100% 100%;
-}
-
-.logo strong {
-  font-weight: 900;
-  color: var(--red);
-}
-
-.logoText {
-  display: inline-flex;
-  align-items: baseline;
-  gap: 0.22em;
-}
-
-.logoText strong {
-  transform: translateY(0.05em);
+  transform: scale(1.08);
 }
 
 /* Links */
@@ -139,7 +79,7 @@
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: rgba(245, 245, 240, 0.7);
+  color: rgba(10, 10, 10, 0.7);
   padding: 0.4rem 0.75rem;
   border: 1px solid transparent;
   transition:
@@ -148,8 +88,8 @@
 }
 
 .link:hover {
-  color: var(--white);
-  border-color: rgba(245, 245, 240, 0.15);
+  color: var(--black);
+  border-color: rgba(10, 10, 10, 0.15);
 }
 
 /* CTA */
@@ -159,26 +99,37 @@
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--black);
-  background: var(--red);
+  color: var(--white);
+  background: var(--black);
   padding: 0.5rem 1.1rem;
-  border: 2px solid var(--red);
+  border: 2px solid var(--black);
   flex-shrink: 0;
+  cursor: pointer;
   transition:
     background 0.18s var(--ease-brutal),
     color 0.18s var(--ease-brutal),
     box-shadow 0.18s var(--ease-brutal),
+    border-color 0.18s var(--ease-brutal),
     transform 0.18s var(--ease-brutal);
 }
 
 .cta:hover {
-  background: transparent;
-  color: var(--red);
-  box-shadow: 3px 3px 0 var(--red);
+  background: var(--gold);
+  color: var(--black);
+  border-color: var(--gold);
+  box-shadow: 3px 3px 0 var(--black);
   transform: translate(-1px, -1px);
 }
 
-/* Mobile */
+/* Ocultar elementos móviles en escritorio */
+.burger {
+  display: none;
+}
+
+.mobileMenu {
+  display: none;
+}
+
 @media (max-width: 600px) {
   .links {
     display: none;
@@ -186,5 +137,93 @@
 
   .inner {
     padding: 0.75rem 1.1rem;
+    justify-content: space-between;
+  }
+
+  /* Ocultar CTA en la barra de navegación para móviles */
+  .inner .cta {
+    display: none;
+  }
+
+  .navbar {
+    max-height: 70px;
+    overflow: hidden;
+  }
+
+  .navbar.open {
+    max-height: 380px;
+  }
+
+  /* Botón hamburguesa móvil */
+  .burger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    color: var(--black);
+    font-size: 1.4rem;
+    transition: color 0.18s ease;
+  }
+
+  .burger:hover {
+    color: var(--gold);
+  }
+
+  /* Dropdown móvil */
+  .mobileMenu {
+    display: block;
+    border-top: 1px solid rgba(10, 10, 10, 0.08);
+    padding: 1.2rem 1.4rem 1.6rem;
+    background: rgba(255, 255, 255, 0.98);
+  }
+
+  .mobileLinks {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  .mobileLink {
+    font-family: var(--font-title);
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: rgba(10, 10, 10, 0.75);
+    display: block;
+    transition: color 0.18s ease;
+  }
+
+  .mobileLink:hover {
+    color: var(--gold);
+  }
+
+  .mobileCta {
+    font-family: var(--font-title);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--white);
+    background: var(--black);
+    padding: 0.6rem 1.2rem;
+    border: 2px solid var(--black);
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+    display: block;
+    transition: background 0.18s var(--ease-brutal), color 0.18s var(--ease-brutal);
+  }
+
+  .mobileCta:hover {
+    background: var(--gold);
+    color: var(--black);
+    border-color: var(--gold);
   }
 }

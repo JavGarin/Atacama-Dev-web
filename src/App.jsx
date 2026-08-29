@@ -9,7 +9,7 @@ import Footer from './components/Footer.jsx';
 export default function App() {
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       <main id="main-content">
         <Hero />
         <StackCarousel />
