@@ -21,6 +21,14 @@ export default function Footer() {
   const [copied, setCopied] = useState(false);
   const [githubHover, setGithubHover] = useState(false);
 
+  const scrollToTop = (e) => {
+    if (e) e.preventDefault();
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
   const handleCopyEmail = () => {
     navigator.clipboard.writeText('contacto.atacamadev@gmail.com').then(() => {
       setCopied(true);
@@ -33,8 +41,16 @@ export default function Footer() {
       {/* Línea decorativa superior roja */}
       <div className={styles.topBar} aria-hidden="true" />
 
-      {/* Título gigante brutalista tipo carrusel vertical */}
-      <div className={styles.hugeTitleContainer} aria-hidden="true">
+      {/* Título gigante brutalista tipo carrusel vertical clickeable para ir al Top */}
+      <div
+        className={styles.hugeTitleContainer}
+        onClick={scrollToTop}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && scrollToTop(e)}
+        aria-label="Volver al inicio - Atacama Dev"
+        title="Volver al inicio"
+      >
         <div className={styles.marqueeVertical}>
           {/* Duplicamos para el efecto infinito */}
           <div className={styles.marqueeItem}>
@@ -52,7 +68,13 @@ export default function Footer() {
         <div className={styles.inner}>
           {/* Columna izquierda: logo + tagline */}
           <div className={styles.brand}>
-            <div className={styles.brandHeader}>
+            <a
+              href="#hero"
+              onClick={scrollToTop}
+              className={styles.brandHeader}
+              aria-label="Volver al inicio - Atacama Dev"
+              title="Volver al inicio"
+            >
               <span className={styles.logoImageWrapper}>
                 <img
                   src="/logo_1_transparente_ad.png"
@@ -63,7 +85,7 @@ export default function Footer() {
               <span className={styles.brandTitleText}>
                 Atacama Dev
               </span>
-            </div>
+            </a>
             <p className={styles.tagline}>
               Potenciamos tu idea.<br />
               Desarrollo web & software a medida.
@@ -163,7 +185,17 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className={styles.bottom}>
           <p className={styles.copy}>
-            © {year} ATACAMA DEV. Todos los derechos reservados.
+            © {year}{' '}
+            <button
+              type="button"
+              onClick={scrollToTop}
+              className={styles.copyBrandLink}
+              title="Volver arriba"
+              aria-label="Volver arriba"
+            >
+              ATACAMA DEV
+            </button>
+            . Todos los derechos reservados.
           </p>
           <p className={styles.crafted} aria-hidden="true">
             Diseñado & construido por JavGarin ✦

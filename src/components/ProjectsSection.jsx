@@ -10,7 +10,7 @@ const PROJECTS = [
     stack: 'React · JavaScript · CSS3',
     tags: ['React', 'JavaScript', 'CSS3'],
     year: '2025',
-    image: '/projects/screenshot.png',
+    image: '/projects/screenshot_opengraph.avif',
     url: 'https://fitpro-gym-xi.vercel.app/',
   },
   {

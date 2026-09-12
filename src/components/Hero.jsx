@@ -9,6 +9,14 @@ export default function Hero() {
   const brandRef     = useRef(null);
   const [isPlannerOpen, setIsPlannerOpen] = useState(false);
 
+  const handleScrollDown = (e) => {
+    if (e) e.preventDefault();
+    const target = document.getElementById('stack') || document.getElementById('proyectos');
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   // 1. Integración 3D: El Portal Progresivo (Glassmorphism & Partículas)
   useProgressivePortal(containerRef);
 
@@ -66,16 +74,33 @@ export default function Hero() {
               <span className={styles.ctaSparkle}>✦</span>
             </button>
 
+            {/* Indicador de scroll minimalista tipo cápsula interactiva (Desktop) */}
             <a
-              href="#proyectos"
-              className={styles.secondaryCta}
-              aria-label="Ver proyectos realizados"
+              href="#stack"
+              onClick={handleScrollDown}
+              className={styles.scrollDesktop}
+              aria-label="Desplazarse hacia tecnologías y servicios"
+              title="Desplazarse hacia abajo"
             >
-              <span>Ver Casos de Éxito</span>
-              <span className={styles.arrowIcon}>↓</span>
+              <span className={styles.mousePill}>
+                <span className={styles.mouseWheel} />
+              </span>
             </a>
           </div>
         </div>
+
+        {/* Indicador de scroll minimalista tipo cápsula fijado en el bottom (Mobile) */}
+        <a
+          href="#stack"
+          onClick={handleScrollDown}
+          className={styles.scrollMobile}
+          aria-label="Desplazarse hacia abajo"
+          title="Desplazarse hacia abajo"
+        >
+          <span className={styles.mousePill}>
+            <span className={styles.mouseWheel} />
+          </span>
+        </a>
       </section>
 
       {/* ── Modal Interactivo de Captación de Propuesta (Project Planner) ── */}
