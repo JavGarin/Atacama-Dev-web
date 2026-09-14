@@ -98,10 +98,12 @@ export default function Footer() {
             <div className={styles.govBadge}>
               <span className={styles.govText}>ATACAMA DEV participa en</span>
               <img 
-                src="/LogoChc.png" 
+                src="/LogoChc.avif"
                 alt="Mercado Público - Compra Ágil" 
                 className={styles.govLogo} 
                 loading="lazy"
+                width="204"
+                height="76"
               />
             </div>
           </div>

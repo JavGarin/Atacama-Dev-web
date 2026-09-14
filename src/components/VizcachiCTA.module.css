@@ -38,6 +38,7 @@
 .logo {
   height: 60px;
   width: auto;
+  aspect-ratio: 1 / 1;
   object-fit: contain;
 }
 
@@ -127,6 +128,7 @@
 .mascot {
   height: 70px;
   width: auto;
+  aspect-ratio: 1 / 1;
   object-fit: contain;
   border-radius: 50%;
   background-color: transparent;

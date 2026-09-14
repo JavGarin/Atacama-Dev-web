@@ -21,7 +21,7 @@ Atacama Dev web/
 ├── public/                 # Archivos estáticos servidos directamente al usuario
 │   ├── favicon_io/         # Iconos de la pestaña del navegador y manifest
 │   ├── projects/           # Recursos visuales del portafolio (imágenes)
-│   └── screenshot-ad.png   # Previsualización principal (Open Graph/SEO)
+│   └── screenshot_web_atacamadev.avif # Previsualización principal (Open Graph/SEO)
 ├── src/                    # Código fuente principal de la aplicación React
 │   ├── components/         # Componentes modulares y reutilizables
 │   ├── styles/             # Archivos CSS globales y utilidades

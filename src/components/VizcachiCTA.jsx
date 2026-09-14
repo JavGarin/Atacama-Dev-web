@@ -7,10 +7,12 @@ export default function VizcachiCTA() {
       <div className={styles.container}>
         <div className={styles.content}>
           <img 
-            src="/gif_vizcachi/logo.png" 
+            src="/gif_vizcachi/logo.avif" 
             alt="Vizcachi Logo" 
             className={styles.logo} 
-            loading="lazy" 
+            loading="lazy"
+            width="256"
+            height="256"
           />
           <div className={styles.textContent}>
             <h2 id="vizcachi-title" className={styles.title}>Apoya el Reciclaje en Atacama</h2>
@@ -44,7 +46,9 @@ export default function VizcachiCTA() {
             src="/gif_vizcachi/vizcachi.gif" 
             alt="Mascota Vizcachi animada" 
             className={styles.mascot} 
-            loading="lazy" 
+            loading="lazy"
+            width="128"
+            height="128"
           />
         </div>
       </div>
