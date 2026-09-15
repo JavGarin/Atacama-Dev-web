@@ -126,7 +126,7 @@ export default function ProjectsSection() {
           observer.disconnect();
         }
       },
-      { threshold: 0, rootMargin: "0px 0px -50px 0px" },
+      { threshold: 0, rootMargin: "0px 0px 50px 0px" },
     );
 
     if (sectionRef.current) {
