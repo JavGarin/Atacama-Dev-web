@@ -9,7 +9,7 @@
   background: var(--white);
   padding: clamp(3.5rem, 8vw, 7rem) clamp(1rem, 5vw, 4rem);
   position: relative;
-  overflow: hidden; /* Previene scroll horizontal accidental en viewport móvil */
+  overflow: clip; /* Previene scroll horizontal accidental sin bloquear IntersectionObserver */
 }
 
 /* ── 2. Header de Sección ────────────────────────────────── */
