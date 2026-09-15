@@ -1,95 +1,95 @@
-import React, { useEffect, useRef, useState, useCallback } from 'react';
-import styles from './ProjectsSection.module.css';
+import React, { useEffect, useRef, useState, useCallback } from "react";
+import styles from "./ProjectsSection.module.css";
 
 const PROJECTS = [
   {
-    id: 'p1',
-    num: '01',
-    title: 'FitPro Gym',
-    desc: 'Landing page moderna para gimnasio con catálogo de planes, servicios y embudo de conversión optimizado.',
-    tags: ['React', 'JavaScript', 'CSS3'],
-    year: '2025',
-    image: '/projects/screenshot_opengraph.avif',
-    url: 'https://fitpro-gym-xi.vercel.app/',
+    id: "p1",
+    num: "01",
+    title: "FitPro Gym",
+    desc: "Landing page moderna para gimnasio con catálogo de planes, servicios y embudo de conversión optimizado.",
+    tags: ["React", "JavaScript", "CSS3"],
+    year: "2025",
+    image: "/projects/screenshot_opengraph.avif",
+    url: "https://fitpro-gym-xi.vercel.app/",
   },
   {
-    id: 'p2',
-    num: '02',
-    title: 'Tech Store',
-    desc: 'E-commerce responsivo de tecnología con catálogo filtrable, carrito de compras y animaciones fluidas.',
-    tags: ['React', 'Vite', 'Tailwind', 'Framer'],
-    year: '2025',
-    image: '/projects/techstore.avif',
-    url: 'https://tech-store-web-nine.vercel.app/',
+    id: "p2",
+    num: "02",
+    title: "Tech Store",
+    desc: "E-commerce responsivo de tecnología con catálogo filtrable, carrito de compras y animaciones fluidas.",
+    tags: ["React", "Vite", "Tailwind", "Framer"],
+    year: "2025",
+    image: "/projects/techstore.avif",
+    url: "https://tech-store-web-nine.vercel.app/",
   },
   {
-    id: 'p3',
-    num: '03',
-    title: 'Energy Store',
-    desc: 'Tienda interactiva de bebidas energéticas con diseño visual de alto impacto y micro-animaciones en CSS puro.',
-    tags: ['HTML5', 'CSS3', 'JavaScript'],
-    year: '2025',
-    image: '/projects/screenshot_energystore.avif',
-    url: 'https://web-carousel-ivory.vercel.app/',
+    id: "p3",
+    num: "03",
+    title: "Energy Store",
+    desc: "Tienda interactiva de bebidas energéticas con diseño visual de alto impacto y micro-animaciones en CSS puro.",
+    tags: ["HTML5", "CSS3", "JavaScript"],
+    year: "2025",
+    image: "/projects/screenshot_energystore.avif",
+    url: "https://web-carousel-ivory.vercel.app/",
   },
   {
-    id: 'p4',
-    num: '04',
-    title: 'AI Powered Recycling',
-    desc: 'Plataforma inteligente que conecta a usuarios con puntos de reciclaje de baterías mediante asistencia de IA.',
-    tags: ['Tailwind', 'JavaScript', 'Vite', 'HTML5'],
-    year: '2025',
-    image: '/projects/screenshotVizcachi.avif',
-    url: 'https://vizcachi.netlify.app/',
+    id: "p4",
+    num: "04",
+    title: "AI Powered Recycling",
+    desc: "Plataforma inteligente que conecta a usuarios con puntos de reciclaje de baterías mediante asistencia de IA.",
+    tags: ["Tailwind", "JavaScript", "Vite", "HTML5"],
+    year: "2025",
+    image: "/projects/screenshotVizcachi.avif",
+    url: "https://vizcachi.netlify.app/",
   },
   {
-    id: 'p5',
-    num: '05',
-    title: 'Onigashima Store',
-    desc: 'E-commerce de coleccionables con estética Manga Pastel, animaciones GSAP, carrito persistente y backend Supabase.',
-    tags: ['React', 'Vite', 'Supabase', 'GSAP'],
-    year: '2025',
-    image: '/projects/onigashima-store.avif',
-    url: 'https://onigashima-store.vercel.app/',
+    id: "p5",
+    num: "05",
+    title: "Onigashima Store",
+    desc: "E-commerce de coleccionables con estética Manga Pastel, animaciones GSAP, carrito persistente y backend Supabase.",
+    tags: ["React", "Vite", "Supabase", "GSAP"],
+    year: "2025",
+    image: "/projects/onigashima-store.avif",
+    url: "https://onigashima-store.vercel.app/",
   },
   {
-    id: 'p6',
-    num: '06',
-    title: 'Curve Slider — Portfolio',
-    desc: 'Showcase para fotografía nocturna con slider parabólico 3D interactivo y scroll infinito con Lenis.',
-    tags: ['JavaScript', 'Lenis', 'GSAP', 'CSS3'],
-    year: '2025',
-    image: '/projects/sebastian-mora.avif',
-    url: 'https://curve-slider-web.vercel.app/',
+    id: "p6",
+    num: "06",
+    title: "Curve Slider — Portfolio",
+    desc: "Showcase para fotografía nocturna con slider parabólico 3D interactivo y scroll infinito con Lenis.",
+    tags: ["JavaScript", "Lenis", "GSAP", "CSS3"],
+    year: "2025",
+    image: "/projects/sebastian-mora.avif",
+    url: "https://curve-slider-web.vercel.app/",
   },
   {
-    id: 'p7',
-    num: '07',
-    title: 'Raíces del Sur Lodge',
-    desc: 'Plataforma de reservas para complejo turístico en la Patagonia con arquitectura mobile-first y alto rendimiento.',
-    tags: ['HTML5', 'CSS3', 'JavaScript'],
-    year: '2026',
-    image: '/projects/screenshot-hotel-sur.avif',
-    url: 'https://raices-del-sur-lodge.vercel.app/',
+    id: "p7",
+    num: "07",
+    title: "Raíces del Sur Lodge",
+    desc: "Plataforma de reservas para complejo turístico en la Patagonia con arquitectura mobile-first y alto rendimiento.",
+    tags: ["HTML5", "CSS3", "JavaScript"],
+    year: "2026",
+    image: "/projects/screenshot-hotel-sur.avif",
+    url: "https://raices-del-sur-lodge.vercel.app/",
   },
   {
-    id: 'p8',
-    num: '08',
-    title: 'Javier Garin — Portfolio',
-    desc: 'Sitio de marca personal interactivo orientado a ingeniería de software, arquitectura web y diseño visual.',
-    tags: ['React', 'Vite', 'Tailwind', 'GSAP'],
-    year: '2026',
-    image: '/projects/screenshot-portfolio-jg.avif',
-    url: 'https://javiergarin.dev/',
+    id: "p8",
+    num: "08",
+    title: "Javier Garin — Portfolio",
+    desc: "Sitio de marca personal interactivo orientado a ingeniería de software, arquitectura web y diseño visual.",
+    tags: ["React", "Vite", "Tailwind", "GSAP"],
+    year: "2026",
+    image: "/projects/screenshot-portfolio-jg.avif",
+    url: "https://javiergarin.dev/",
   },
   {
-    id: 'p9',
-    num: '09',
-    title: 'Atacama Track App',
-    desc: 'Solución integral para gestión deportiva y seguimiento de competencias atléticas de alto rendimiento.',
-    tags: ['React', 'TypeScript', 'Vite', 'Supabase', 'Zustand'],
-    year: '2026',
-    image: '/projects/screenshot-AtacamaTrack.avif',
+    id: "p9",
+    num: "09",
+    title: "Atacama Track App",
+    desc: "Solución integral para gestión deportiva y seguimiento de competencias atléticas de alto rendimiento.",
+    tags: ["React", "TypeScript", "Vite", "Supabase", "Zustand"],
+    year: "2026",
+    image: "/projects/screenshot-AtacamaTrack.avif",
   },
 ];
 
@@ -113,6 +113,12 @@ export default function ProjectsSection() {
 
   // Observer de visibilidad para animación de entrada
   useEffect(() => {
+    // Fallback: si el navegador no soporta IntersectionObserver, mostrar de inmediato
+    if (!("IntersectionObserver" in window)) {
+      setIsVisible(true);
+      return;
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -120,14 +126,21 @@ export default function ProjectsSection() {
           observer.disconnect();
         }
       },
-      { threshold: 0, rootMargin: '0px 0px -50px 0px' }
+      { threshold: 0, rootMargin: "0px 0px -50px 0px" },
     );
 
     if (sectionRef.current) {
       observer.observe(sectionRef.current);
     }
 
-    return () => observer.disconnect();
+    // Red de seguridad: si el observer no dispara en 2.5s (bugs en browsers móviles),
+    // mostrar la sección igualmente para evitar que quede invisible
+    const failsafe = setTimeout(() => setIsVisible(true), 2500);
+
+    return () => {
+      observer.disconnect();
+      clearTimeout(failsafe);
+    };
   }, []);
 
   const isFirstMount = useRef(true);
@@ -139,15 +152,17 @@ export default function ProjectsSection() {
       return;
     }
     if (tabsListRef.current) {
-      const activeTab = tabsListRef.current.querySelector(`[data-index="${activeIndex}"]`);
+      const activeTab = tabsListRef.current.querySelector(
+        `[data-index="${activeIndex}"]`,
+      );
       if (activeTab) {
         const container = tabsListRef.current;
         const tabLeft = activeTab.offsetLeft;
         const tabWidth = activeTab.offsetWidth;
         const containerWidth = container.offsetWidth;
         container.scrollTo({
-          left: tabLeft - (containerWidth / 2) + (tabWidth / 2),
-          behavior: 'smooth',
+          left: tabLeft - containerWidth / 2 + tabWidth / 2,
+          behavior: "smooth",
         });
       }
     }
@@ -172,8 +187,10 @@ export default function ProjectsSection() {
       aria-label="Proyectos de Atacama Dev"
     >
       {/* Header */}
-      <div className={`${styles.header} ${isVisible ? styles.visible : ''}`}>
-        <span className={styles.sectionNum} aria-hidden="true">03</span>
+      <div className={`${styles.header} ${isVisible ? styles.visible : ""}`}>
+        <span className={styles.sectionNum} aria-hidden="true">
+          03
+        </span>
         <div className={styles.headerContent}>
           <h2 className={styles.sectionTitle}>Proyectos</h2>
           <p className={styles.sectionSub}>
@@ -183,7 +200,9 @@ export default function ProjectsSection() {
       </div>
 
       {/* Contenedor Principal: Fusión Mobile-First */}
-      <div className={`${styles.deckContainer} ${isVisible ? styles.visible : ''}`}>
+      <div
+        className={`${styles.deckContainer} ${isVisible ? styles.visible : ""}`}
+      >
         {/* Selector de Pestañas (Horizontal en mobile / Sidebar en desktop) */}
         <aside className={styles.sidebar} aria-label="Navegación de proyectos">
           <div className={styles.controlsBar}>
@@ -229,7 +248,7 @@ export default function ProjectsSection() {
                   id={`tab-${proj.id}`}
                   aria-selected={isActive}
                   aria-controls={`panel-${proj.id}`}
-                  className={`${styles.tabItem} ${isActive ? styles.tabActive : ''}`}
+                  className={`${styles.tabItem} ${isActive ? styles.tabActive : ""}`}
                   onClick={() => setActiveIndex(idx)}
                 >
                   <span className={styles.tabNum}>{proj.num}</span>
@@ -303,7 +322,9 @@ export default function ProjectsSection() {
             {/* Contenido de la Carta con Layout Mobile-First */}
             <div className={styles.cardContent}>
               <div className={styles.metaRow}>
-                <span className={styles.badgeNum}>PROYECTO {currentProject.num}</span>
+                <span className={styles.badgeNum}>
+                  PROYECTO {currentProject.num}
+                </span>
                 <span className={styles.yearText}>{currentProject.year}</span>
               </div>
 
@@ -312,9 +333,14 @@ export default function ProjectsSection() {
               <p className={styles.projectDesc}>{currentProject.desc}</p>
 
               <div className={styles.cardFooter}>
-                <ul className={styles.tagList} aria-label="Tecnologías utilizadas">
+                <ul
+                  className={styles.tagList}
+                  aria-label="Tecnologías utilizadas"
+                >
                   {currentProject.tags.map((tag) => (
-                    <li key={tag} className={styles.tagItem}>{tag}</li>
+                    <li key={tag} className={styles.tagItem}>
+                      {tag}
+                    </li>
                   ))}
                 </ul>
 
@@ -326,7 +352,9 @@ export default function ProjectsSection() {
                     className={styles.visitButton}
                   >
                     <span>Ver proyecto en vivo</span>
-                    <span className={styles.arrowIcon} aria-hidden="true">↗</span>
+                    <span className={styles.arrowIcon} aria-hidden="true">
+                      ↗
+                    </span>
                   </a>
                 ) : (
                   <span className={styles.disabledBadge}>Próximamente</span>
