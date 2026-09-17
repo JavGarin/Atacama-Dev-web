@@ -19,12 +19,13 @@
   border-radius: 12px;
   padding: 1.5rem;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-  transition: transform 0.3s ease, border-color 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .container:hover {
-  transform: translateY(-2px);
-  border-color: #4ade80; /* Eco green highlight */
+  transform: translate(-4px, -6px);
+  border-color: #4ade80;
+  box-shadow: 8px 10px 0px rgba(74, 222, 128, 0.9), 0 15px 35px rgba(0, 0, 0, 0.5);
 }
 
 .content {
@@ -36,7 +37,7 @@
 }
 
 .logo {
-  height: 60px;
+  height: 90px;
   width: auto;
   aspect-ratio: 1 / 1;
   object-fit: contain;
@@ -155,7 +156,7 @@
   }
 
   .logo {
-    height: 70px;
+    height: 110px;
   }
 
   .title {

@@ -5,8 +5,8 @@ const PROJECTS = [
   {
     id: "p1",
     num: "01",
-    title: "FitPro Gym",
-    desc: "Landing page moderna para gimnasio con catálogo de planes, servicios y embudo de conversión optimizado.",
+    title: "Landing Pages Comerciales",
+    desc: "Desarrollo de sitios web corporativos y landing pages de alta conversión. Diseños optimizados para destacar servicios, captar leads y escalar la presencia digital de negocios.",
     tags: ["React", "JavaScript", "CSS3"],
     year: "2025",
     image: "/projects/screenshot_web_energystork.avif",
@@ -25,8 +25,8 @@ const PROJECTS = [
   {
     id: "p2",
     num: "02",
-    title: "Energy Store",
-    desc: "Tienda interactiva de bebidas energéticas con diseño visual de alto impacto y micro-animaciones en CSS puro.",
+    title: "Diseños UI/UX",
+    desc: "Energy Stork: Muestra de diseño interactivo de alto impacto visual orientado a e-commerce y publicidad. Enfoque en estética moderna, micro-animaciones inmersivas y experiencias de usuario memorables.",
     tags: ["HTML5", "CSS3", "JavaScript"],
     year: "2025",
     image: "/projects/screenshot_energystore.avif",
@@ -35,8 +35,8 @@ const PROJECTS = [
   {
     id: "p3",
     num: "03",
-    title: "AI Powered Recycling",
-    desc: "Plataforma inteligente que conecta a usuarios con puntos de reciclaje de baterías mediante asistencia de IA.",
+    title: "Webs para Campañas y ONGs",
+    desc: "Vizcachi: Muestra de sitio web persuasivo para iniciativas de marketing o impacto social. Diseñado para recaudar interés y fondos, motivando a los usuarios a pasar de la intención a la acción en el reciclaje de pilas.",
     tags: ["Tailwind", "JavaScript", "Vite", "HTML5"],
     year: "2025",
     image: "/projects/screenshotVizcachi.avif",
@@ -75,21 +75,22 @@ const PROJECTS = [
   {
     id: "p7",
     num: "07",
-    title: "Javier Garin — Portfolio",
-    desc: "Sitio de marca personal interactivo orientado a ingeniería de software, arquitectura web y diseño visual.",
+    title: "Portfolios para clientes",
+    desc: "Desarrollo landing pages profesionales y portfolios interactivos para negocios y profesionales que quieren actualizar su presencia digital y potenciar sus resultados. Descubre cómo puedo ayudarte.",
     tags: ["React", "Vite", "Tailwind", "GSAP"],
-    year: "2026",
+    year: "2025",
     image: "/projects/screenshot-portfolio-jg.avif",
     url: "https://javiergarin.dev/",
   },
   {
     id: "p8",
     num: "08",
-    title: "Atacama Track App",
-    desc: "Solución integral para gestión deportiva y seguimiento de competencias atléticas de alto rendimiento.",
+    title: "Plataformas de Gestión a Medida",
+    desc: "Caso de Estudio (Plataforma Privada): PWA B2B desarrollada a medida para gestión deportiva (normativas WA/JDE). Cuenta con arquitectura limpia, routing avanzado, manejo seguro de datos sensibles (RUT) y cumplimiento de normativas de accesibilidad nacional de Chile.",
     tags: ["React", "TypeScript", "Vite", "Supabase", "Zustand"],
     year: "2026",
     image: "/projects/screenshot-AtacamaTrack.avif",
+    badgeText: "Plataforma Privada",
   },
 ];
 
@@ -313,7 +314,7 @@ export default function ProjectsSection() {
                     height="874"
                   />
                   <div className={styles.imageBadgeStatic}>
-                    <span>En desarrollo</span>
+                    <span>{currentProject.badgeText || "En desarrollo"}</span>
                   </div>
                 </div>
               )}
@@ -333,6 +334,7 @@ export default function ProjectsSection() {
               <p className={styles.projectDesc}>{currentProject.desc}</p>
 
               <div className={styles.cardFooter}>
+                <span className={styles.stackLabel}>Stack Tecnológico:</span>
                 <ul
                   className={styles.tagList}
                   aria-label="Tecnologías utilizadas"
@@ -357,7 +359,7 @@ export default function ProjectsSection() {
                     </span>
                   </a>
                 ) : (
-                  <span className={styles.disabledBadge}>Próximamente</span>
+                  <span className={styles.disabledBadge}>{currentProject.badgeText || "Próximamente"}</span>
                 )}
               </div>
             </div>

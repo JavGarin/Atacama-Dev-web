@@ -7,7 +7,7 @@ export default function VizcachiCTA() {
       <div className={styles.container}>
         <div className={styles.content}>
           <img 
-            src="/gif_vizcachi/logo.avif" 
+            src="/gif_vizcachi/logo_vizcachi.png" 
             alt="Vizcachi Logo" 
             className={styles.logo} 
             loading="lazy"

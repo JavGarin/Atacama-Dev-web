@@ -407,6 +407,16 @@
   margin-top: 0.25rem;
 }
 
+.stackLabel {
+  font-family: var(--font-title);
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: var(--gray);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: -0.3rem; /* Reduce el espacio entre el label y los tags */
+}
+
 .tagList {
   display: flex;
   flex-wrap: wrap;
