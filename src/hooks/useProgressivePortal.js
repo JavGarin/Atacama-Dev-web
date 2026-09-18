@@ -50,7 +50,7 @@ export function useProgressivePortal(containerRef) {
     // Grupo contenedor desplazado a la derecha para no tapar el texto
     const waveGroup = new THREE.Group();
     const isDesktopInitial = width >= 900;
-    const initialOffsetX = isDesktopInitial ? 0.8 : (width < 600 ? 0.15 : 0.4);
+    const initialOffsetX = isDesktopInitial ? 2.2 : (width < 600 ? 0.15 : 0.9);
     waveGroup.position.set(initialOffsetX, isDesktopInitial ? -0.75 : -0.85, 0);
     waveGroup.rotation.set(-Math.PI / 3.4, 0, Math.PI / 8);
     scene.add(waveGroup);
@@ -231,7 +231,7 @@ export function useProgressivePortal(containerRef) {
         renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
 
         const isDesktop = width >= 900;
-        const currentOffsetX = isDesktop ? 0.8 : (width < 600 ? 0.15 : 0.4);
+        const currentOffsetX = isDesktop ? 2.2 : (width < 600 ? 0.15 : 0.9);
         waveGroup.position.set(currentOffsetX, isDesktop ? -0.75 : -0.85, 0);
         const responsiveScale = isDesktop ? 1.0 : (width < 600 ? 0.72 : 0.85);
         waveGroup.scale.setScalar(responsiveScale);
@@ -281,7 +281,7 @@ export function useProgressivePortal(containerRef) {
         waveGroup.rotation.z = Math.PI / 8 + Math.sin(time * 0.4) * 0.03;
 
         const isDesktop = width >= 900;
-        const currentOffsetX = isDesktop ? 0.8 : (width < 600 ? 0.15 : 0.4);
+        const currentOffsetX = isDesktop ? 2.2 : (width < 600 ? 0.15 : 0.9);
         waveGroup.position.x = currentOffsetX + mouse.x * 0.15;
 
         const baseOffsetY = (isDesktop ? -0.75 : -0.85) + Math.sin(time * 0.6) * 0.08 - scrollProgress * 0.35;
