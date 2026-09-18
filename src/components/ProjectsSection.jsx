@@ -40,7 +40,7 @@ const PROJECTS = [
     tags: ["Tailwind", "JavaScript", "Vite", "HTML5"],
     year: "2025",
     image: "/projects/screenshotVizcachi.avif",
-    url: "https://vizcachi.netlify.app/",
+    url: "https://vizcachi.vercel.app/",
   },
   {
     id: "p4",
