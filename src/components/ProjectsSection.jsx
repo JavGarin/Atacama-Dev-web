@@ -69,7 +69,7 @@ const PROJECTS = [
     desc: "Plataforma de reservas para complejo turístico en la Patagonia con arquitectura mobile-first y alto rendimiento.",
     tags: ["HTML5", "CSS3", "JavaScript"],
     year: "2026",
-    image: "/projects/screenshot-hotel-sur.avif",
+    image: "/projects/screenshot-hotel-cabanas.avif",
     url: "https://raices-del-sur-lodge.vercel.app/",
   },
   {
