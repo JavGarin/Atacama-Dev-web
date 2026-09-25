@@ -76,11 +76,33 @@ const PROJECTS = [
     id: "p7",
     num: "07",
     title: "Portfolios para clientes",
-    desc: "Desarrollo landing pages profesionales y portfolios interactivos para negocios y profesionales que quieren actualizar su presencia digital y potenciar sus resultados. Descubre cómo puedo ayudarte.",
+    desc: "Desarrollo landing pages profesionales y portfolios interactivos para negocios y profesionales que quieren actualizar su presencia digital y potenciar sus resultados.",
     tags: ["React", "Vite", "Tailwind", "GSAP"],
     year: "2025",
     image: "/projects/screenshot-portfolio-jg.avif",
     url: "https://javiergarin.dev/",
+    items: [
+      {
+        id: "p7-1",
+        tabName: "01 Web Profesional",
+        title: "Portfolio Profesional — Javier Garín",
+        desc: "Landing page y portfolio profesional para especialistas y negocios que buscan destacar en su industria. Diseñado para potenciar la marca personal, captar clientes calificados y exhibir proyectos con estética limpia, micro-animaciones fluidas y alta conversión.",
+        tags: ["React", "Vite", "Tailwind", "GSAP"],
+        year: "2025",
+        image: "/projects/screenshot-portfolio-jg.avif",
+        url: "https://javiergarin.dev/",
+      },
+      {
+        id: "p7-2",
+        tabName: "02 3D Interactivo",
+        title: "3D Interactive Portfolio — Javier Garín",
+        desc: "Single Page Application (SPA) interactiva con fondo procedural WebGL y shaders GLSL en Three.js con efectos glitch y ruido fractal (fBm). Diseñada con arquitectura Mobile-First, UI ultraligera y reactiva con Alpine.js, 60 FPS estables y soporte bilingüe (ES/EN).",
+        tags: ["Three.js", "WebGL", "Alpine.js", "Vite"],
+        year: "2025",
+        image: "/projects/screenshot-web-javier.avif",
+        url: "https://javier-garin-dev.vercel.app",
+      },
+    ],
   },
   {
     id: "p8",
@@ -99,10 +121,21 @@ export default function ProjectsSection() {
   const tabsListRef = useRef(null);
   const touchStartX = useRef(0);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [subProjectIndex, setSubProjectIndex] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
 
   const total = PROJECTS.length;
   const currentProject = PROJECTS[activeIndex];
+
+  // Reiniciar sub-índice al cambiar de pestaña principal
+  useEffect(() => {
+    setSubProjectIndex(0);
+  }, [activeIndex]);
+
+  const hasItems = Array.isArray(currentProject.items) && currentProject.items.length > 0;
+  const activeItem = hasItems
+    ? currentProject.items[subProjectIndex] || currentProject.items[0]
+    : currentProject;
 
   const handleNext = useCallback(() => {
     setActiveIndex((prev) => (prev + 1) % total);
@@ -275,7 +308,7 @@ export default function ProjectsSection() {
 
           {/* Carta Activa Frontal */}
           <article
-            key={currentProject.id}
+            key={`${currentProject.id}-${hasItems ? subProjectIndex : "main"}`}
             id={`panel-${currentProject.id}`}
             role="tabpanel"
             aria-labelledby={`tab-${currentProject.id}`}
@@ -283,17 +316,17 @@ export default function ProjectsSection() {
           >
             {/* Contenedor de Imagen */}
             <div className={styles.imageWrap}>
-              {currentProject.url ? (
+              {activeItem.url ? (
                 <a
-                  href={currentProject.url}
+                  href={activeItem.url}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={styles.imageLink}
-                  aria-label={`Visitar sitio de ${currentProject.title}`}
+                  aria-label={`Visitar sitio de ${activeItem.title}`}
                 >
                   <img
-                    src={currentProject.image}
-                    alt={`Vista previa del proyecto ${currentProject.title}`}
+                    src={activeItem.image}
+                    alt={`Vista previa del proyecto ${activeItem.title}`}
                     className={styles.image}
                     loading="eager"
                     width="1880"
@@ -306,16 +339,51 @@ export default function ProjectsSection() {
               ) : (
                 <div className={styles.imageLink}>
                   <img
-                    src={currentProject.image}
-                    alt={`Vista previa del proyecto ${currentProject.title}`}
+                    src={activeItem.image}
+                    alt={`Vista previa del proyecto ${activeItem.title}`}
                     className={styles.image}
                     loading="eager"
                     width="1880"
                     height="874"
                   />
                   <div className={styles.imageBadgeStatic}>
-                    <span>{currentProject.badgeText || "En desarrollo"}</span>
+                    <span>{activeItem.badgeText || "En desarrollo"}</span>
                   </div>
+                </div>
+              )}
+
+              {/* Controles de cambio rápido en imagen si hay múltiples proyectos */}
+              {hasItems && currentProject.items.length > 1 && (
+                <div className={styles.imageSubNav}>
+                  <button
+                    type="button"
+                    className={styles.imageSubNavBtn}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      setSubProjectIndex((prev) => (prev - 1 + currentProject.items.length) % currentProject.items.length);
+                    }}
+                    aria-label="Proyecto anterior dentro de esta categoría"
+                    title="Anterior"
+                  >
+                    ←
+                  </button>
+                  <span className={styles.imageSubNavCounter}>
+                    0{subProjectIndex + 1} / 0{currentProject.items.length}
+                  </span>
+                  <button
+                    type="button"
+                    className={styles.imageSubNavBtn}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      setSubProjectIndex((prev) => (prev + 1) % currentProject.items.length);
+                    }}
+                    aria-label="Proyecto siguiente dentro de esta categoría"
+                    title="Siguiente"
+                  >
+                    →
+                  </button>
                 </div>
               )}
             </div>
@@ -326,12 +394,37 @@ export default function ProjectsSection() {
                 <span className={styles.badgeNum}>
                   PROYECTO {currentProject.num}
                 </span>
-                <span className={styles.yearText}>{currentProject.year}</span>
+                <span className={styles.yearText}>{activeItem.year}</span>
               </div>
 
-              <h3 className={styles.projectTitle}>{currentProject.title}</h3>
+              {/* Selector de sub-proyectos si existen varios en la categoría */}
+              {hasItems && (
+                <div className={styles.subTabsContainer} role="tablist" aria-label="Portfolios disponibles">
+                  <span className={styles.subTabsLabel}>Muestras:</span>
+                  <div className={styles.subTabList}>
+                    {currentProject.items.map((item, idx) => {
+                      const isSubActive = subProjectIndex === idx;
+                      return (
+                        <button
+                          key={item.id}
+                          type="button"
+                          role="tab"
+                          aria-selected={isSubActive}
+                          className={`${styles.subTabBtn} ${isSubActive ? styles.subTabActive : ""}`}
+                          onClick={() => setSubProjectIndex(idx)}
+                        >
+                          <span className={styles.subTabDot} aria-hidden="true" />
+                          <span>{item.tabName || item.title}</span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
 
-              <p className={styles.projectDesc}>{currentProject.desc}</p>
+              <h3 className={styles.projectTitle}>{activeItem.title}</h3>
+
+              <p className={styles.projectDesc}>{activeItem.desc}</p>
 
               <div className={styles.cardFooter}>
                 <span className={styles.stackLabel}>Stack Tecnológico:</span>
@@ -339,16 +432,16 @@ export default function ProjectsSection() {
                   className={styles.tagList}
                   aria-label="Tecnologías utilizadas"
                 >
-                  {currentProject.tags.map((tag) => (
+                  {activeItem.tags.map((tag) => (
                     <li key={tag} className={styles.tagItem}>
                       {tag}
                     </li>
                   ))}
                 </ul>
 
-                {currentProject.url ? (
+                {activeItem.url ? (
                   <a
-                    href={currentProject.url}
+                    href={activeItem.url}
                     target="_blank"
                     rel="noopener noreferrer"
                     className={styles.visitButton}
@@ -359,7 +452,7 @@ export default function ProjectsSection() {
                     </span>
                   </a>
                 ) : (
-                  <span className={styles.disabledBadge}>{currentProject.badgeText || "Próximamente"}</span>
+                  <span className={styles.disabledBadge}>{activeItem.badgeText || "Próximamente"}</span>
                 )}
               </div>
             </div>

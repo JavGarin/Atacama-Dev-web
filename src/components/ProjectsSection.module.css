@@ -345,6 +345,59 @@
   color: var(--gray);
 }
 
+/* Sub-navegación dentro de la imagen */
+.imageSubNav {
+  position: absolute;
+  bottom: 0.75rem;
+  left: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: var(--white);
+  border: 2px solid var(--black);
+  box-shadow: 2px 2px 0px var(--black);
+  padding: 0.2rem 0.35rem;
+  z-index: 5;
+}
+
+.imageSubNavBtn {
+  width: 1.85rem;
+  height: 1.85rem;
+  min-width: 32px;
+  min-height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--white-soft);
+  border: 1px solid var(--black);
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--black);
+  cursor: pointer;
+  border-radius: 0;
+  transition: all 0.15s ease;
+}
+
+.imageSubNavBtn:hover {
+  background: var(--black);
+  color: var(--white);
+}
+
+.imageSubNavBtn:active {
+  transform: translate(1px, 1px);
+}
+
+.imageSubNavCounter {
+  font-family: var(--font-title);
+  font-size: 0.68rem;
+  font-weight: 800;
+  color: var(--black);
+  padding-inline: 0.35rem;
+  letter-spacing: 0.05em;
+  user-select: none;
+}
+
 /* ── 7. Contenido de la Carta (Mobile-First) ──────────────── */
 
 .cardContent {
@@ -376,6 +429,82 @@
   font-weight: 700;
   color: var(--gold);
   letter-spacing: 0.08em;
+}
+
+/* Selector de sub-proyectos */
+.subTabsContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  padding-block: 0.15rem;
+}
+
+.subTabsLabel {
+  font-family: var(--font-title);
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: var(--gray);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.subTabList {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.subTabBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.35rem 0.65rem;
+  min-height: 36px;
+  background: var(--white);
+  border: 2px solid var(--black);
+  box-shadow: 2px 2px 0px var(--black);
+  font-family: var(--font-title);
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--black);
+  cursor: pointer;
+  border-radius: 0;
+  transition: all 0.15s ease;
+}
+
+.subTabBtn:hover:not(.subTabActive) {
+  background: var(--white-soft);
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0px var(--black);
+}
+
+.subTabBtn:active {
+  transform: translate(1px, 1px);
+  box-shadow: none;
+}
+
+.subTabActive {
+  background: var(--black);
+  color: var(--white);
+  border-color: var(--black);
+  box-shadow: 2px 2px 0px var(--gold);
+}
+
+.subTabDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gray-light);
+  display: inline-block;
+  transition: background 0.15s ease, box-shadow 0.15s ease;
+}
+
+.subTabActive .subTabDot {
+  background: var(--gold);
+  box-shadow: 0 0 6px var(--gold);
 }
 
 .projectTitle {
