@@ -26,6 +26,12 @@ dist-ssr
 *.sln
 *.sw?
 
-# Atacama Dev / Agents specific
-.agents/
+# Atacama Dev / Agents specific — SSD: versionar specs, ignorar privado/sensible
+.agents/*
+!.agents/AGENTS.md
+!.agents/specs/
+!.agents/specs/**
+!.agents/skills/
+!.agents/skills/**
+.agents/private/
 skills-lock.json
