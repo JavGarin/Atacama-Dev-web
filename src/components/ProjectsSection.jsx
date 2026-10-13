@@ -45,11 +45,11 @@ const PROJECTS = [
   {
     id: "p4",
     num: "04",
-    title: "Onigashima Store",
-    desc: "E-commerce de coleccionables con estética Manga Pastel, animaciones GSAP, carrito persistente y backend Supabase.",
+    title: "E-commerce",
+    desc: "Onigashima Store: E-commerce de coleccionables con estética Manga Pastel, animaciones GSAP, carrito persistente y backend Supabase.",
     tags: ["React", "Vite", "Supabase", "GSAP"],
     year: "2025",
-    image: "/projects/onigashima-store.avif",
+    image: "/projects/screenshot_onigashimastore1.avif",
     url: "https://onigashima-store.vercel.app/",
   },
   {
