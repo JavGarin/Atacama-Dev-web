@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { submitLead, validateLead } from '../lib/leadClient.js';
 import styles from './ProjectPlannerModal.module.css';
 
 const PROJECT_TYPES = [
@@ -62,6 +63,7 @@ export default function ProjectPlannerModal({ isOpen, onClose }) {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSending, setIsSending] = useState(false);
   const [sendSuccess, setSendSuccess] = useState(false);
+  const [submitVia, setSubmitVia] = useState('api');
   const [copied, setCopied] = useState(false);
 
   const modalRef = useRef(null);
@@ -94,6 +96,7 @@ export default function ProjectPlannerModal({ isOpen, onClose }) {
       setIsSubmitted(false);
       setIsSending(false);
       setSendSuccess(false);
+      setSubmitVia('api');
       setCopied(false);
     }
   }, [isOpen]);
@@ -135,37 +138,38 @@ export default function ProjectPlannerModal({ isOpen, onClose }) {
 ${formData.description || 'Sin detalles adicionales.'}`;
   };
 
-  // Enviar propuesta automáticamente por HTTP a contacto.atacamadev@gmail.com
+  // SPEC-002: envío por backend propio con fallback FormSubmit/manual.
   const handleSubmitProposal = async () => {
     setIsSending(true);
 
-    try {
-      const response = await fetch('https://formsubmit.co/ajax/contacto.atacamadev@gmail.com', {
-        method: 'POST',
-        headers: { 
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-          _subject: `✦ Nueva Propuesta: ${currentTypeObj?.title || 'Proyecto'} — ${formData.name}`,
-          Cliente: formData.name,
-          Email: formData.email,
-          Telefono_WhatsApp: formData.phone || 'No especificado',
-          Tipo_de_Solucion: currentTypeObj?.title,
-          Etapa_del_Proyecto: currentStageObj?.title,
-          Descripcion: formData.description || 'Sin descripción adicional',
-          _template: 'table'
-        })
-      });
+    const checked = validateLead({
+      type: selectedType,
+      stage: selectedStage,
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      description: formData.description,
+    });
 
-      if (response.ok) {
-        setSendSuccess(true);
-      } else {
-        setSendSuccess(false);
-      }
-    } catch (err) {
-      console.warn('Envío HTTP fallido, habilitando modo directo:', err);
+    if (!checked.ok) {
+      setIsSending(false);
       setSendSuccess(false);
+      setIsSubmitted(true);
+      return;
+    }
+
+    try {
+      const result = await submitLead({
+        ...checked.sanitized,
+        origin: 'atacama-dev-web',
+        userAgent: typeof navigator !== 'undefined' ? navigator.userAgent : '',
+      });
+      setSendSuccess(result.ok);
+      setSubmitVia(result.via);
+    } catch (err) {
+      console.warn('Envío SPEC-002 fallido, modo directo:', err);
+      setSendSuccess(false);
+      setSubmitVia('manual');
     } finally {
       setIsSending(false);
       setIsSubmitted(true);
@@ -386,15 +390,26 @@ ${formData.description || 'Sin detalles adicionales.'}`;
                 {sendSuccess ? (
                   <>
                     Hemos recibido automáticamente tu propuesta para <strong>{currentTypeObj?.title}</strong> enviada a <strong>contacto.atacamadev@gmail.com</strong>. Te responderemos a <strong>{formData.email}</strong> a la brevedad.
+                    {submitVia === 'formsubmit' && ' (vía canal alternativo)'}
                   </>
                 ) : (
                   <>
-                    Hemos estructurado tu idea para <strong>{currentTypeObj?.title}</strong>. Puedes enviárnosla directamente por correo o copiar la propuesta:
+                    Hemos estructurado tu idea para <strong>{currentTypeObj?.title}</strong>. El envío automático no respondió, puedes reintentarlo o enviárnosla directamente por correo o copiar la propuesta:
                   </>
                 )}
               </p>
 
               <div className={styles.actionButtonsSuccess}>
+                {!sendSuccess && (
+                  <button
+                    type="button"
+                    onClick={handleSubmitProposal}
+                    disabled={isSending}
+                    className={styles.btnPrimarySuccess}
+                  >
+                    {isSending ? 'Reintentando envío...' : '↻ Reintentar envío automático'}
+                  </button>
+                )}
                 <button
                   type="button"
                   onClick={handleSendEmail}

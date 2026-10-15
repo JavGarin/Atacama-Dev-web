@@ -4,10 +4,21 @@
 > Repo: `Atacama Dev web` — SPA marketing/portfolio React 19 + Vite 5 + Three.js.
 
 ## 1. Dónde vive la verdad (SSD)
-- Spec vigente: `.agents/specs/atacama-dev-web-001-landing-actual/spec.md`
-- Plan técnico: `.agents/specs/atacama-dev-web-001-landing-actual/plan.md`
+
+### SPEC-001 — Landing actual (AsBuilt, Done)
+- Spec: `.agents/specs/atacama-dev-web-001-landing-actual/spec.md`
+- Plan: `.agents/specs/atacama-dev-web-001-landing-actual/plan.md`
 - Tareas: `.agents/specs/atacama-dev-web-001-landing-actual/tasks.md`
-- Skills locales: `.agents/skills/*/SKILL.md` (threejs-fundamentals, find-skills)
+
+### SPEC-002 — Backend Leads (código Done, activación T-207/208 en curso)
+- Spec: `.agents/specs/atacama-dev-web-002-backend-leads/spec.md`
+- Plan: `.agents/specs/atacama-dev-web-002-backend-leads/plan.md`
+- Tareas: `.agents/specs/atacama-dev-web-002-backend-leads/tasks.md`
+- Archivos clave: `api/leads.js` (serverless) + `src/lib/leadClient.js` (cliente) + `vercel.json`
+- Decisión: Supabase postergado (volumen 1–3/semana); Resend activo en prod.
+
+### Skills locales
+`.agents/skills/*/SKILL.md` (threejs-fundamentals, find-skills)
 
 Regla SSD: **nunca codificar sin spec+plan aprobados**. Si la orden contradice la spec, actualizar primero `spec.md` → `plan.md` → `tasks.md`, luego implementar.
 
@@ -27,7 +38,7 @@ Invoke-WebRequest -UseBasicParsing -Uri http://localhost:5173/ -TimeoutSec 10
 4. Assets: solo `.avif/.png/.gif`, `loading="lazy"` + `width/height` fuera del Hero.
 5. Hero 3D: respetar `useProgressivePortal.js` — pixelRatio ≤1.5, grid 48/32, `IntersectionObserver` pausa, cleanup `dispose()` + `cancelAnimationFrame`, respetar `prefers-reduced-motion`.
 6. Navegación por anclas `#hero/#stack/#proyectos`, `scroll-behavior:smooth`.
-7. Captación sin backend: `ProjectPlannerModal` → `mailto:` + clipboard. No inventar `fetch` sin spec.
+7. Captación con backend (SPEC-002): `ProjectPlannerModal` → `submitLead()` en `leadClient.js` → cadena `POST /api/leads → FormSubmit → mailto+clipboard`. La función `api/leads.js` es serverless Vercel (Node 20, región GRU). No inventar `fetch` sin spec.
 8. A11y mínima: `main/contentinfo/address`, `aria-*`, foco visible dorado, teclado ESC cierra modal.
 9. SEO en `index.html` (OG/Twitter `es_CL`). No romper metas.
 10. Build: `vite.config.js manualChunks vendor-three/vendor`. No commitear `dist/` a futuro.
