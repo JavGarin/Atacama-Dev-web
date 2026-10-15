@@ -10,12 +10,12 @@
 - Plan: `.agents/specs/atacama-dev-web-001-landing-actual/plan.md`
 - Tareas: `.agents/specs/atacama-dev-web-001-landing-actual/tasks.md`
 
-### SPEC-002 — Backend Leads (código Done, activación T-207/208 en curso)
+### SPEC-002 — Backend Leads (Done en producción)
 - Spec: `.agents/specs/atacama-dev-web-002-backend-leads/spec.md`
 - Plan: `.agents/specs/atacama-dev-web-002-backend-leads/plan.md`
 - Tareas: `.agents/specs/atacama-dev-web-002-backend-leads/tasks.md`
 - Archivos clave: `api/leads.js` (serverless) + `src/lib/leadClient.js` (cliente) + `vercel.json`
-- Decisión: Supabase postergado (volumen 1–3/semana); Resend activo en prod.
+- Decisión: Supabase postergado (volumen 1–3/semana); Resend / FormSubmit fallbacks activos en prod.
 
 ### Skills locales
 `.agents/skills/*/SKILL.md` (threejs-fundamentals, find-skills)
