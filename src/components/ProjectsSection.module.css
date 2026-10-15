@@ -217,10 +217,6 @@
   letter-spacing: -0.01em;
 }
 
-.tabYear {
-  display: none; /* Oculto en móvil para mantener las píldoras concisas */
-}
-
 .tabActive {
   background: var(--black);
   color: var(--white);
@@ -668,7 +664,7 @@
 
   .tabItem {
     display: grid;
-    grid-template-columns: 32px 1fr auto;
+    grid-template-columns: 32px 1fr;
     width: 100%;
     padding: 0.85rem 1.15rem;
     border: none;
@@ -683,17 +679,6 @@
 
   .tabItem:hover:not(.tabActive) {
     background: var(--white-soft);
-  }
-
-  .tabYear {
-    display: inline-block;
-    font-size: 0.72rem;
-    color: var(--gray-light);
-    font-weight: 500;
-  }
-
-  .tabActive .tabYear {
-    color: rgba(245, 240, 235, 0.6);
   }
 
   .deckStage {

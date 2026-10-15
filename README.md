@@ -14,8 +14,6 @@ El proyecto está construido bajo los siguientes cimientos modernos:
 - **Estilos:** CSS Modules por componente + tokens globales en `src/styles/globals.css` (variables, flexbox, grid, animaciones/keyframes nativas, marquees CSS)
 - **Gestor de paquetes:** pnpm 11.3
 
-> Nota: versiones anteriores del README mencionaban GSAP/Lenis. No son dependencias de este repo (`pnpm list --depth 0` no los incluye y no hay `import` en `src/`). Solo aparecen como texto descriptivo del stack de proyectos externos en `ProjectsSection.jsx`, y como skill de agente en `skills-lock.json` (no es dependencia runtime).
-
 ## Estructura de Carpetas
 
 La arquitectura del proyecto está pensada para ser escalable y de fácil mantenimiento:
@@ -41,13 +39,6 @@ Atacama Dev web/
 └── vite.config.js          # split vendor-three/vendor, chunkWarning 600
 ```
 
-## Comandos
-
-```powershell
-pnpm dev -- --host --port 5173   # dev -> http://localhost:5173/
-pnpm build                       # genera dist/
-pnpm preview                     # sirve dist/
-```
 
 ## Características Destacadas
 

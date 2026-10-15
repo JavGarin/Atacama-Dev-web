@@ -299,7 +299,6 @@ export default function ProjectsSection() {
                 >
                   <span className={styles.tabNum}>{proj.num}</span>
                   <span className={styles.tabTitle}>{proj.title}</span>
-                  <span className={styles.tabYear}>{proj.year}</span>
                 </button>
               );
             })}
