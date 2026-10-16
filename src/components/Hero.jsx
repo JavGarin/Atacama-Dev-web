@@ -6,7 +6,6 @@ import styles from './Hero.module.css';
 export default function Hero() {
   const sectionRef   = useRef(null);
   const containerRef = useRef(null);
-  const brandRef     = useRef(null);
   const [isPlannerOpen, setIsPlannerOpen] = useState(false);
 
   const handleScrollDown = (e) => {
@@ -39,7 +38,7 @@ export default function Hero() {
         <div className={styles.transitionMask} aria-hidden="true" />
 
         {/* ── Marca e Identidad: Logo + Título Atacama Dev + Tagline + CTAs ── */}
-        <div ref={brandRef} className={styles.brandWrapper}>
+        <div className={styles.brandWrapper}>
           {/* Micro-badge de estado / disponibilidad */}
           <div className={styles.statusBadge}>
             <span className={styles.pulseDot} aria-hidden="true" />

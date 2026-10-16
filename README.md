@@ -1,54 +1,103 @@
 # Atacama Dev Web
 
-Atacama Dev es una agencia orientada al desarrollo web y creación de software a medida. Nuestro objetivo es llevar las ideas al siguiente nivel utilizando tecnología moderna, optimización SEO y una experiencia de usuario (UX/UI) cuidada al detalle.
+> Official web application for **Atacama Dev** — a Chilean software engineering and bespoke web development agency delivering high-performance, secure, and conversion-focused digital platforms.
 
-## Stack Tecnológico (real, verificado 2026-10-13)
-
-El proyecto está construido bajo los siguientes cimientos modernos:
-
-- **Librería UI:** React 19.2 + React DOM 19.2
-- **Empaquetador y Entorno de Desarrollo:** Vite 5 + @vitejs/plugin-react 5
-- **3D / Hero interactivo:** Three.js 0.185 (`src/hooks/useProgressivePortal.js` — malla ondulante GLSL propia, pixelRatio ≤ 1.5, pausa offscreen)
-- **Iconos:** Lucide 1.31 + Morphicons 1.7
-- **Lenguaje Principal:** JavaScript / JSX (ES Modules, sin TypeScript)
-- **Estilos:** CSS Modules por componente + tokens globales en `src/styles/globals.css` (variables, flexbox, grid, animaciones/keyframes nativas, marquees CSS)
-- **Gestor de paquetes:** pnpm 11.3
-
-## Estructura de Carpetas
-
-La arquitectura del proyecto está pensada para ser escalable y de fácil mantenimiento:
-
-```text
-Atacama Dev web/
-├── .agents/                # Cerebro SSD: AGENTS.md + specs/<id>/spec+plan+tasks + skills/
-│   └── specs/atacama-dev-web-001-landing-actual/
-├── public/                 # Archivos estáticos servidos directamente al usuario
-│   ├── favicon_io/         # Iconos de la pestaña del navegador y manifest
-│   ├── projects/           # Recursos visuales del portafolio (*.avif)
-│   ├── gif_vizcachi/       # Assets causa Vizcachi
-│   ├── Rubik/ + Roboto/    # Fuentes variables self-hosted
-│   └── screenshot_web_atacamadev.avif # Previsualización principal (Open Graph/SEO)
-├── src/                    # Código fuente principal de la aplicación React
-│   ├── components/         # Hero, StackCarousel, ProjectsSection, VizcachiCTA, Footer, ProjectPlannerModal (+ *.module.css)
-│   ├── hooks/              # useProgressivePortal.js (Three.js hero)
-│   ├── styles/             # globals.css (tokens Brutalista-Minimalista 60-30-10)
-│   ├── App.jsx             # Composición: <main> 4 secciones + <Footer>
-│   └── main.jsx            # Mount React.StrictMode
-├── index.html              # Plantilla base y metadatos SEO/Open Graph (es_CL)
-├── package.json            # Dependencias, scripts y configuración del proyecto
-└── vite.config.js          # split vendor-three/vendor, chunkWarning 600
-```
-
-
-## Características Destacadas
-
-1. **SEO Optimizado:** Integración de metadatos profundos (Open Graph y Twitter Cards) para previsualizaciones impecables al compartir el enlace.
-2. **Hero 3D + Animaciones CSS:** Fondo WebGL propio con Three.js + marquees/transiciones CSS nativas (sin GSAP en este repo). Respeta `prefers-reduced-motion`.
-3. **Responsive Design:** Mobile-first, de 360px a pantallas extra grandes, container 1200px.
-4. **Captación sin backend:** `ProjectPlannerModal` wizard Tipo → Etapa → Datos → mailto + copiar propuesta.
-5. **SSD:** spec vigente en `.agents/specs/atacama-dev-web-001-landing-actual/spec.md`. Leer `.agents/AGENTS.md` antes de codificar.
+![Atacama Dev Web Preview](./public/screenshot_web_atacamadev.avif)
 
 ---
 
-**Autor:** JavGarin
+## 🌟 Overview
 
+**Atacama Dev** transforms complex ideas into scalable, production-ready digital solutions. Based in Chile and operating worldwide, our focus is anchored in **active cybersecurity**, **universal web accessibility**, and **uncompromising performance**.
+
+- 🌐 **Official Instagram:** [@atacamadev.app](https://www.instagram.com/atacamadev.app/)
+- ✉️ **Inquiries & Proposals:** [contacto.atacamadev@gmail.com](mailto:contacto.atacamadev@gmail.com)
+- 🏛️ **Chilean Public Procurement:** Active vendor in *Mercado Público / Compra Ágil*.
+
+---
+
+## 🛠️ Real Tech Stack
+
+Built upon modern web standards without heavy frameworks or bloated abstractions:
+
+- **UI Framework:** [React 19](https://react.dev/) + React DOM 19
+- **Build Tool & Dev Server:** [Vite 5](https://vitejs.dev/)
+- **Interactive 3D / WebGL:** [Three.js](https://threejs.org/) (custom procedural undulating wave with custom GLSL shaders, `pixelRatio ≤ 1.5`, automatic offscreen pausing, and `prefers-reduced-motion` compliance)
+- **Styling Architecture:** Pure CSS Modules + Global Design System tokens (`src/styles/globals.css`) adhering to a Brutalist-Minimalist 60-30-10 palette
+- **Icons & Micro-interactions:** [Lucide](https://lucide.dev/) + [Morphicons](https://github.com/)
+- **Package Manager:** [pnpm](https://pnpm.io/) 11
+
+---
+
+## 📁 Project Structure
+
+```text
+Atacama Dev web/
+├── .agents/                # Spec-Driven Development (SSD) memory, specs & tasks
+├── public/                 # Static assets served at root
+│   ├── favicon_io/         # PWA manifest and responsive favicons
+│   ├── projects/           # High-efficiency portfolio screenshots (*.avif)
+│   ├── gif_vizcachi/       # Community recycling initiative assets
+│   ├── Rubik/ + Roboto/    # Self-hosted variable typography
+│   └── screenshot_web_atacamadev.avif # Main web preview & Open Graph visual
+├── src/                    # Application source code
+│   ├── components/         # Modular React components + CSS Modules
+│   │   ├── Hero.jsx                # WebGL 3D portal + conversion CTA
+│   │   ├── StackCarousel.jsx       # Infinite seamless marquee with engineering values
+│   │   ├── ProjectsSection.jsx     # Data-driven portfolio deck with sub-project tabs
+│   │   ├── VizcachiCTA.jsx         # Non-profit community impact banner
+│   │   ├── Footer.jsx              # Responsive navigation, contact & compliance drawer
+│   │   ├── ProjectPlannerModal.jsx # Multi-step proposal wizard
+│   │   └── LegalModal.jsx          # Accessible compliance & legal policy dialog
+│   ├── hooks/              # useProgressivePortal.js (optimized Three.js engine)
+│   ├── styles/             # globals.css (design tokens, reset, typography)
+│   ├── App.jsx             # Semantic layout composition (<main> + <footer>)
+│   └── main.jsx            # React 19 root bootstrap
+├── index.html              # Core HTML5 entry point, SEO metas, Open Graph & schema
+├── package.json            # Dependencies and scripts
+└── vite.config.js          # Vendor chunk splitting and bundle optimizations
+```
+
+---
+
+## 🚀 Key Features
+
+1. **Cybersecurity by Design (OWASP Standards):** Defensive coding against XSS, CSRF, and injection attacks, hardened HTTP headers, and end-to-end TLS 1.3 encryption.
+2. **Universal Accessibility (WCAG 2.1 AA & Chilean Law 20.422):** Strict semantic landmarks, full keyboard navigation, color contrast validation, and screen-reader friendliness.
+3. **Interactive 3D Hero Portal:** Progressive GPU-accelerated WebGL background powered by Three.js that dynamically throttles during idle or off-screen states to preserve client battery and device thermals.
+4. **Data-Driven Portfolio Showcase:** Interactive deck featuring real case studies across E-commerce, B2B SaaS platforms, and UI/UX engineering with instant tab switching and live production links.
+5. **Interactive Proposal Planner:** A frictionless 4-step wizard (`ProjectPlannerModal`) allowing potential clients to configure their project scope and send structured requirements directly.
+6. **Built-in Compliance & Transparency:** Dedicated collapsable compliance drawer and modal outlining Legal Notices, Privacy Policy (Law 19.628 & GDPR ready), Terms of Service, and a zero-ad-tracking Cookie Policy.
+
+---
+
+## 💻 Local Development
+
+### Prerequisites
+- [Node.js](https://nodejs.org/) (v20+ recommended)
+- [pnpm](https://pnpm.io/) (v10+)
+
+### Setup & Run
+```bash
+# 1. Clone repository
+git clone https://github.com/JavGarin/Atacama-Dev-web.git
+
+# 2. Install dependencies
+pnpm install
+
+# 3. Start local development server
+pnpm dev -- --host --port 5173
+
+# 4. Build optimized production bundle
+pnpm build
+
+# 5. Preview production build locally
+pnpm preview
+```
+
+---
+
+## 📄 License & Credits
+
+- **Author:** Javier Garín ([Atacama Dev](https://www.instagram.com/atacamadev.app/))
+- **Proprietary Commercial Software** © 2026 Atacama Dev. All rights reserved.

@@ -14,8 +14,7 @@
 ## B. Gaps (SPEC-001 → SPEC-002)
 - [x] T-GAP01 Corregir README GSAP fantasma → Done 2026-10-13. Evidencia: `pnpm list --depth 0` (lucide, morphicons, react, react-dom, three; sin gsap/lenis) + `search_codebase gsap|Lenis` solo hits en README + descripciones portfolio externo + skills-lock (skill agente, no dependencia). Fix: README reescrito a stack real Three.js+CSS. Verificado `pnpm build` + `localhost:5173 200`.
 - [x] T-GAP02 `dist/` en git → Done 2026-10-13 (no-acción requerida). Evidencia: `.gitignore` ya ignoraba `dist/dist-ssr`, `git ls-files ^dist` vacío, `git status` solo `M README.md`. Fix aplicado: `.gitignore` selectivo `.agents/*` + `!AGENTS.md !specs/** !skills/**` + `.agents/private/` ignorado, `skills-lock.json` y `dist/` siguen ignorados. `add --dry-run` confirma que solo entran `README.md + AGENTS.md + specs/* + skills/*/SKILL.md`.
-- [x] T-GAP03 Backend leads: `POST /api/leads` + validación + Resend + fallbacks → Done en SPEC-002.
-- [ ] T-GAP04 SEO técnico: `public/sitemap.xml`, `robots.txt`, JSON-LD Organization.
+- [x] T-GAP04 SEO técnico: `public/sitemap.xml`, `robots.txt`, JSON-LD ProfessionalService en `index.html`, canonical URL, geo-targeting y Open Graph completo → Done 2026-10-16.
 - [ ] T-GAP05 QA base: `vitest` modal utils + `playwright` smoke hero→planner→portfolio.
 - [ ] T-GAP06 Perf fuentes: solo variable fonts + `<link preload>` Rubik/Roboto, purgar `static/`.
 - [ ] T-GAP07 TS progresivo: renombrar `useProgressivePortal.js→.ts` + `jsconfig` strict.

@@ -1,0 +1,6 @@
+# robots.txt para Atacama Dev
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://atacama-dev.app/sitemap.xml

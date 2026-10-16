@@ -12,16 +12,6 @@ const PROJECTS = [
     image: "/projects/screenshot_web_energystork.avif",
     url: "https://fitpro-gym-xi.vercel.app/",
   },
-  // {
-  //   id: "p2",
-  //   num: "02",
-  //   title: "Tech Store",
-  //   desc: "E-commerce responsivo de tecnología con catálogo filtrable, carrito de compras y animaciones fluidas.",
-  //   tags: ["React", "Vite", "Tailwind", "Framer"],
-  //   year: "2025",
-  //   image: "/projects/techstore.avif",
-  //   url: "https://tech-store-web-nine.vercel.app/",
-  // },
   {
     id: "p2",
     num: "02",
