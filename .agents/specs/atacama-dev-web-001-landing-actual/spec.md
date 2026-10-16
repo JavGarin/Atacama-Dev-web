@@ -1,9 +1,9 @@
 # SPEC-001 — Atacama Dev Web Landing Actual (reverse-engineered)
 
 - ID: `atacama-dev-web-001-landing-actual`
-- Fecha: 2026-10-13 | Autor: Senior SSD (auditoría código)
-- Estado: `AsBuilt v1.0.0` | Fuente verdad: `src/`, `index.html`, `package.json`, `vite.config.js`
-- Servidor canónico: `pnpm dev -- --host --port 5173` → `http://localhost:5173/` (verificado 200 OK)
+- Fecha: 2026-10-13 | Revision: 2026-10-16 | Autor: Senior SSD (auditoria codigo)
+- Estado: `AsBuilt v1.1.0 — Produccion estable` | Commit: `3291c55`
+- Servidor canonico: `pnpm dev -- --host --port 5173` -> `http://localhost:5173/` (200 OK)
 
 ## 1. Visión
 One-page en español (Chile) que convierte visitas en propuestas: Hero 3D + manifiesto stack + portfolio data-driven + CTA social Vizcachi + footer contacto. Sin router, sin backend, sin auth.
@@ -14,7 +14,7 @@ One-page en español (Chile) que convierte visitas en propuestas: Hero 3D + mani
 - US-03 Visitante recorre stack/servicios en doble marquee infinito.
 - US-04 Visitante explora 7 categorías portfolio con sub-muestras y abre demo Vercel en pestaña nueva.
 - US-05 Visitante apoya causa Vizcachi (Saber más / Encuesta Google Forms).
-- US-06 Visitante copia email `contacto.atacamadev@gmail.com` y navega redes (GitHub JavGarin, Instagram atacamadev).
+- US-06 Visitante copia email `contacto.atacamadev@gmail.com` y visita Instagram `@atacamadev.app`.
 
 ## 3. Requerimientos funcionales
 - FR-01 SPA con secciones `#hero/#stack/#proyectos` + `VizcachiCTA` + `Footer`. Scroll suave.
@@ -34,7 +34,8 @@ One-page en español (Chile) que convierte visitas en propuestas: Hero 3D + mani
 - NFR-05 Respeta `prefers-reduced-motion`.
 
 ## 5. Fuera de alcance (actual)
-Sin router, backend, DB, auth, pagos, i18n, tests, TS, analytics, sitemap/robots/json-ld, GSAP real (solo mención).
+Sin router, backend adicional, DB directa, auth, pagos, i18n, tests, TS, analytics, GSAP real (solo mencion en descripciones portfolio externo).
+Implementado (ya NO fuera de alcance): sitemap.xml, robots.txt, JSON-LD ProfessionalService, canonical URL, Open Graph + Twitter Card completo.
 
 ## 6. Criterios aceptación
 - AC-01 `pnpm dev` → 200 OK en `/`, sin error consola bloqueante.
