@@ -384,6 +384,201 @@
   letter-spacing: 0.05em;
 }
 
+/* ── Franja de Cumplimiento Legal y Normativo (Dropdown Colapsable) ── */
+.complianceBar {
+  background: var(--white-soft);
+  border-top: 1px solid rgba(10, 10, 10, 0.08);
+  border-bottom: 1px solid rgba(10, 10, 10, 0.08);
+  padding: 0 clamp(1.5rem, 5vw, 4rem);
+}
+
+.complianceInner {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.complianceToggle {
+  background: transparent;
+  border: none;
+  padding: 1.15rem 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  cursor: pointer;
+  text-align: left;
+  transition: opacity 0.2s ease;
+}
+
+.complianceToggle:hover {
+  opacity: 0.85;
+}
+
+.complianceToggleMain {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 0;
+}
+
+.complianceBadge {
+  font-family: var(--font-title);
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: var(--gold-dark);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.complianceTitleRow {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.complianceTitle {
+  font-family: var(--font-brand);
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--black);
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.complianceSummaryText {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  color: rgba(10, 10, 10, 0.55);
+}
+
+.complianceToggleAction {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.complianceToggleActionText {
+  font-family: var(--font-title);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: rgba(10, 10, 10, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* Contenido Expandible */
+.complianceDropdownContent {
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.35s var(--ease-brutal), opacity 0.25s ease, padding 0.3s ease;
+}
+
+.complianceDropdownContent.complianceOpen {
+  max-height: 600px;
+  opacity: 1;
+  padding-bottom: 1.5rem;
+}
+
+.complianceExpandedGrid {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 2.5rem;
+  align-items: start;
+  border-top: 1px dashed rgba(10, 10, 10, 0.15);
+  padding-top: 1.25rem;
+}
+
+.complianceInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.complianceDesc {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: rgba(10, 10, 10, 0.75);
+  line-height: 1.55;
+  margin: 0;
+}
+
+.complianceTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.35rem;
+}
+
+.complianceTag {
+  font-family: var(--font-title);
+  font-size: 0.7rem;
+  font-weight: 700;
+  background: var(--white);
+  border: 1px solid rgba(10, 10, 10, 0.12);
+  padding: 0.25rem 0.6rem;
+  border-radius: 4px;
+  color: var(--black);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.06);
+}
+
+.complianceLinksWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+
+.complianceLinksLabel {
+  font-family: var(--font-title);
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: rgba(10, 10, 10, 0.5);
+  letter-spacing: 0.1em;
+}
+
+.complianceLinksList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.legalLinkBtn {
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: var(--font-title);
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: rgba(10, 10, 10, 0.78);
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s ease;
+  text-decoration: underline;
+  text-decoration-color: rgba(200, 159, 87, 0.5);
+  text-underline-offset: 3px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.legalLinkBtn:hover {
+  color: var(--black);
+  text-decoration-color: var(--gold);
+  transform: translateX(3px);
+}
+
 /* Responsive */
 @media (max-width: 860px) {
   .inner {
@@ -424,6 +619,31 @@
 
   .socialHorizontal {
     flex-wrap: wrap;
+  }
+
+  /* Dropdown Compliance Mobile */
+  .complianceSummaryText {
+    display: none;
+  }
+
+  .complianceToggleActionText {
+    display: none;
+  }
+
+  .complianceExpandedGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .complianceLinksWrap {
+    width: 100%;
+  }
+
+  .complianceLinksList {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    width: 100%;
+    gap: 0.75rem;
   }
 }
 

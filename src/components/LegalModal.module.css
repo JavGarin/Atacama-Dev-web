@@ -1,0 +1,387 @@
+/* ============================================================
+   LegalModal.module.css — Ventana de Cumplimiento Legal y Políticas
+   Arquitectura Mobile-First Estricta | Paleta Atacama Dev
+   ============================================================ */
+
+/* ── 1. Capa de Fondo (Overlay) ── */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: rgba(10, 10, 10, 0.78);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: flex-end; /* Mobile default: Bottom sheet */
+  justify-content: center;
+  padding: 0;
+  animation: overlayFadeIn 0.22s var(--ease-brutal) forwards;
+}
+
+@keyframes overlayFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ── 2. Contenedor de la Hoja/Modal (Mobile First: Bottom Sheet) ── */
+.modalSheet {
+  width: 100%;
+  height: 92svh;
+  max-height: 92svh;
+  display: flex;
+  flex-direction: column;
+  background: var(--white);
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  border: 2px solid var(--black);
+  border-bottom: none;
+  box-shadow: 0 -12px 35px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  animation: sheetSlideUp 0.28s var(--ease-brutal) forwards;
+}
+
+@keyframes sheetSlideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0.5;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* ── 3. Encabezado Fijo (Nunca se aplasta) ── */
+.header {
+  flex-shrink: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  background: var(--black);
+  color: var(--white);
+  border-bottom: 2px solid var(--gold);
+}
+
+.headerTitleWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 0;
+}
+
+.headerBadge {
+  font-family: var(--font-title);
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: var(--gold);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.title {
+  font-family: var(--font-brand);
+  font-size: clamp(1.05rem, 3.5vw, 1.4rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin: 0;
+  color: var(--white);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.closeButton {
+  flex-shrink: 0;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: var(--white);
+  font-size: 1.2rem;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  line-height: 1;
+  margin-left: 0.75rem;
+}
+
+.closeButton:hover,
+.closeButton:focus-visible {
+  background: var(--gold);
+  color: var(--black);
+  border-color: var(--gold);
+}
+
+/* ── 4. Barra de Navegación de Pestañas Fija (Independiente del Scroll) ── */
+.tabsBar {
+  flex-shrink: 0;
+  width: 100%;
+  display: flex;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  background: var(--white-soft);
+  border-bottom: 2px solid var(--black);
+  padding: 0.5rem 0.75rem 0;
+  gap: 0.4rem;
+  position: relative;
+  z-index: 10;
+  scrollbar-width: thin;
+  scrollbar-color: var(--gold) transparent;
+}
+
+.tabsBar::-webkit-scrollbar {
+  height: 3px;
+}
+
+.tabsBar::-webkit-scrollbar-thumb {
+  background: var(--gold);
+  border-radius: 2px;
+}
+
+.tabBtn {
+  flex: 0 0 auto;
+  min-width: max-content;
+  font-family: var(--font-title);
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.65rem 0.85rem;
+  border: 1px solid rgba(10, 10, 10, 0.18);
+  border-bottom: none;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  background: rgba(255, 255, 255, 0.65);
+  color: rgba(10, 10, 10, 0.7);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+  touch-action: manipulation;
+}
+
+.tabBtn:hover {
+  color: var(--black);
+  background: var(--white);
+}
+
+.tabBtnActive {
+  background: var(--white);
+  color: var(--black);
+  border-color: var(--black);
+  border-top: 3px solid var(--gold);
+  font-weight: 800;
+  box-shadow: 0 2px 0 var(--white);
+}
+
+/* ── 5. Área de Contenido Scrolleable (El único elemento que scrollea) ── */
+.bodyContent {
+  flex: 1 1 auto;
+  min-height: 0; /* Clave flexbox para permitir scroll interno sin empujar tabs */
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 1.25rem;
+  background: var(--white);
+  color: var(--black);
+  font-family: var(--font-body);
+  line-height: 1.65;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  position: relative;
+  z-index: 1;
+}
+
+.bodyContent::-webkit-scrollbar {
+  width: 6px;
+}
+
+.bodyContent::-webkit-scrollbar-track {
+  background: var(--white-soft);
+}
+
+.bodyContent::-webkit-scrollbar-thumb {
+  background: rgba(10, 10, 10, 0.25);
+  border-radius: 3px;
+}
+
+.bodyContent::-webkit-scrollbar-thumb:hover {
+  background: var(--gold);
+}
+
+/* ── 6. Secciones y Tipografía Legal ── */
+.legalSection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.sectionHeading {
+  font-family: var(--font-brand);
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--black);
+  border-left: 3px solid var(--gold);
+  padding-left: 0.65rem;
+  margin-top: 0.35rem;
+  line-height: 1.3;
+}
+
+.paragraph {
+  font-size: 0.9rem;
+  color: rgba(10, 10, 10, 0.88);
+  margin: 0;
+  line-height: 1.65;
+}
+
+.bulletList {
+  list-style: none;
+  padding-left: 0;
+  margin: 0.35rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.bulletItem {
+  font-size: 0.88rem;
+  color: rgba(10, 10, 10, 0.85);
+  padding-left: 1.25rem;
+  position: relative;
+  line-height: 1.55;
+}
+
+.bulletItem::before {
+  content: "✦";
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+  font-size: 0.75rem;
+  top: 0.15rem;
+}
+
+.infoBadgeBox {
+  background: var(--white-soft);
+  border: 1px solid rgba(200, 159, 87, 0.4);
+  border-left: 4px solid var(--gold);
+  padding: 0.85rem 1rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  color: rgba(10, 10, 10, 0.85);
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  line-height: 1.5;
+}
+
+.infoBadgeBox strong {
+  color: var(--black);
+}
+
+/* ── 7. Pie del Modal Fijo ── */
+.modalFooter {
+  flex-shrink: 0;
+  width: 100%;
+  padding: 0.85rem 1.25rem;
+  background: var(--white-soft);
+  border-top: 1px solid rgba(10, 10, 10, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.modalFooterNote {
+  font-size: 0.72rem;
+  color: rgba(10, 10, 10, 0.6);
+  font-family: var(--font-title);
+  line-height: 1.4;
+}
+
+.acceptBtn {
+  font-family: var(--font-title);
+  font-size: 0.82rem;
+  font-weight: 700;
+  background: var(--black);
+  color: var(--white);
+  border: 1px solid var(--black);
+  padding: 0.5rem 1.25rem;
+  border-radius: 4px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.acceptBtn:hover,
+.acceptBtn:focus-visible {
+  background: var(--gold);
+  color: var(--black);
+  border-color: var(--gold);
+}
+
+/* ── 8. Media Query: Desktop / Tablet Breakpoint (min-width: 641px) ── */
+@media (min-width: 641px) {
+  .overlay {
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+  }
+
+  .modalSheet {
+    max-width: 840px;
+    height: 86vh;
+    max-height: 86vh;
+    border-radius: 8px;
+    border: 2px solid var(--black);
+    box-shadow: 6px 6px 0 var(--gold);
+    animation: desktopScaleUp 0.25s var(--ease-brutal) forwards;
+  }
+
+  @keyframes desktopScaleUp {
+    from {
+      transform: scale(0.96) translateY(14px);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1) translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .header {
+    padding: 1.25rem 1.75rem;
+  }
+
+  .title {
+    font-size: 1.4rem;
+  }
+
+  .tabsBar {
+    padding: 0.65rem 1.5rem 0;
+    gap: 0.5rem;
+  }
+
+  .tabBtn {
+    font-size: 0.84rem;
+    padding: 0.65rem 1.15rem;
+  }
+
+  .bodyContent {
+    padding: 1.75rem;
+    gap: 1.5rem;
+  }
+
+  .paragraph {
+    font-size: 0.92rem;
+  }
+
+  .modalFooter {
+    padding: 1rem 1.75rem;
+  }
+
+  .modalFooterNote {
+    font-size: 0.78rem;
+  }
+}

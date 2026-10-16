@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { MorphIcon } from 'morphicons/react';
-import { Plus, Minus, Folder, ArrowUpRight } from 'lucide';
+import { Plus, Minus } from 'lucide';
 import styles from './Footer.module.css';
+import LegalModal from './LegalModal.jsx';
 
 const SOCIAL_LINKS = [
-  { label: 'GitHub', href: 'https://github.com/JavGarin', external: true },
-  { label: 'Instagram', href: 'https://instagram.com/atacamadev', external: true },
+  { label: 'Instagram', href: 'https://www.instagram.com/atacamadev.app/', external: true },
 ];
 
 const NAV_LINKS = [
@@ -18,8 +18,15 @@ export default function Footer() {
   const year = new Date().getFullYear();
   const [navOpen, setNavOpen] = useState(false);
   const [contactOpen, setContactOpen] = useState(false);
+  const [complianceOpen, setComplianceOpen] = useState(false);
   const [copied, setCopied] = useState(false);
-  const [githubHover, setGithubHover] = useState(false);
+  const [legalModalOpen, setLegalModalOpen] = useState(false);
+  const [activeLegalTab, setActiveLegalTab] = useState('compliance');
+
+  const openLegalModal = (tab = 'compliance') => {
+    setActiveLegalTab(tab);
+    setLegalModalOpen(true);
+  };
 
   const scrollToTop = (e) => {
     if (e) e.preventDefault();
@@ -150,32 +157,13 @@ export default function Footer() {
                 <ul className={styles.socialHorizontal} role="list" aria-label="Redes sociales">
                   {SOCIAL_LINKS.map(({ label, href, external }) => (
                     <li key={label}>
-                      {label === 'GitHub' ? (
-                        <a
-                          href={href}
-                          className={styles.socialLinkGithub}
-                          onMouseEnter={() => setGithubHover(true)}
-                          onMouseLeave={() => setGithubHover(false)}
-                          aria-label="Visitar GitHub de Atacama Dev"
-                          {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-                        >
-                          <span>GitHub</span>
-                          <MorphIcon
-                            icon={githubHover ? Folder : ArrowUpRight}
-                            size={14}
-                            color={githubHover ? 'var(--gold)' : 'rgba(10, 10, 10, 0.6)'}
-                            strokeWidth={2}
-                          />
-                        </a>
-                      ) : (
-                        <a
-                          href={href}
-                          className={styles.socialLink}
-                          {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-                        >
-                          {label}
-                        </a>
-                      )}
+                      <a
+                        href={href}
+                        className={styles.socialLink}
+                        {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                      >
+                        {label} ↗
+                      </a>
                     </li>
                   ))}
                 </ul>
@@ -183,27 +171,133 @@ export default function Footer() {
             </div>
           </div>
         </div>
-
-        {/* Bottom bar */}
-        <div className={styles.bottom}>
-          <p className={styles.copy}>
-            © {year}{' '}
-            <button
-              type="button"
-              onClick={scrollToTop}
-              className={styles.copyBrandLink}
-              title="Volver arriba"
-              aria-label="Volver arriba"
-            >
-              ATACAMA DEV
-            </button>
-            . Todos los derechos reservados.
-          </p>
-          <p className={styles.crafted} aria-hidden="true">
-            Diseñado & construido por JavGarin ✦
-          </p>
-        </div>
       </div>
+
+      {/* ── Franja de Cumplimiento Legal y Normativo (Dropdown Colapsable) ── */}
+      <section className={styles.complianceBar} aria-label="Cumplimiento legal, seguridad y normativas">
+        <div className={styles.complianceInner}>
+          <button
+            type="button"
+            className={styles.complianceToggle}
+            onClick={() => setComplianceOpen(!complianceOpen)}
+            aria-expanded={complianceOpen}
+            aria-controls="compliance-collapse-panel"
+          >
+            <div className={styles.complianceToggleMain}>
+              <span className={styles.complianceBadge}>Transparencia & Seguridad</span>
+              <div className={styles.complianceTitleRow}>
+                <h3 className={styles.complianceTitle}>Cumplimiento Normativo (Compliance)</h3>
+                <span className={styles.complianceSummaryText}>
+                  Ciberseguridad OWASP · Privacidad Ley 19.628 & GDPR · WCAG 2.1 AA · Mercado Público
+                </span>
+              </div>
+            </div>
+            <div className={styles.complianceToggleAction}>
+              <span className={styles.complianceToggleActionText}>
+                {complianceOpen ? 'Ocultar' : 'Ver detalle y políticas'}
+              </span>
+              <MorphIcon
+                icon={complianceOpen ? Minus : Plus}
+                size={18}
+                color="var(--gold)"
+                strokeWidth={2.5}
+              />
+            </div>
+          </button>
+
+          <div
+            id="compliance-collapse-panel"
+            className={`${styles.complianceDropdownContent} ${complianceOpen ? styles.complianceOpen : ''}`}
+          >
+            <div className={styles.complianceExpandedGrid}>
+              <div className={styles.complianceInfo}>
+                <p className={styles.complianceDesc}>
+                  <strong>ATACAMA DEV</strong> opera bajo rigurosos estándares de ciberseguridad activa, privacidad de datos y accesibilidad web universal, garantizando el cumplimiento estricto de la legislación comercial tanto en Chile como en el ámbito internacional.
+                </p>
+                <div className={styles.complianceTags} aria-label="Estándares de seguridad y cumplimiento">
+                  <span className={styles.complianceTag}>🛡️ Ciberseguridad OWASP</span>
+                  <span className={styles.complianceTag}>🔒 Privacidad Ley 19.628 & GDPR</span>
+                  <span className={styles.complianceTag}>♿ Accesibilidad WCAG 2.1 AA & Ley 20.422</span>
+                  <span className={styles.complianceTag}>🏛️ Mercado Público / Compra Ágil</span>
+                </div>
+              </div>
+
+              <nav className={styles.complianceLinksWrap} aria-label="Enlaces legales y políticas">
+                <span className={styles.complianceLinksLabel}>Documentación Legal:</span>
+                <ul className={styles.complianceLinksList} role="list">
+                  <li>
+                    <button
+                      type="button"
+                      className={styles.legalLinkBtn}
+                      onClick={() => openLegalModal('compliance')}
+                      aria-haspopup="dialog"
+                    >
+                      <span>Aviso Legal & Compliance</span>
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      type="button"
+                      className={styles.legalLinkBtn}
+                      onClick={() => openLegalModal('privacy')}
+                      aria-haspopup="dialog"
+                    >
+                      <span>Política de Privacidad</span>
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      type="button"
+                      className={styles.legalLinkBtn}
+                      onClick={() => openLegalModal('terms')}
+                      aria-haspopup="dialog"
+                    >
+                      <span>Términos y Condiciones</span>
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      type="button"
+                      className={styles.legalLinkBtn}
+                      onClick={() => openLegalModal('cookies')}
+                      aria-haspopup="dialog"
+                    >
+                      <span>Política de Cookies</span>
+                    </button>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Bottom bar */}
+      <div className={styles.bottom}>
+        <p className={styles.copy}>
+          © {year}{' '}
+          <button
+            type="button"
+            onClick={scrollToTop}
+            className={styles.copyBrandLink}
+            title="Volver arriba"
+            aria-label="Volver arriba"
+          >
+            ATACAMA DEV
+          </button>
+          . Todos los derechos reservados.
+        </p>
+        <p className={styles.crafted} aria-hidden="true">
+          Diseñado & construido por JavGarin ✦
+        </p>
+      </div>
+
+      {/* Modal de Políticas Legales y Normativas */}
+      <LegalModal
+        isOpen={legalModalOpen}
+        initialTab={activeLegalTab}
+        onClose={() => setLegalModalOpen(false)}
+      />
     </footer>
   );
 }

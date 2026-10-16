@@ -56,8 +56,8 @@ const PROJECTS = [
         id: "p4-1",
         tabName: "01 Onigashima Store",
         title: "Onigashima Store — E-commerce",
-        desc: "E-commerce de coleccionables con estética Manga Pastel, animaciones GSAP, carrito persistente y backend Supabase.",
-        tags: ["React", "Vite", "Supabase", "GSAP"],
+        desc: "Tienda online moderna y dinámica diseñada especialmente para entusiastas del anime y coleccionables. Ofrece una experiencia fluida con animaciones profesionales (GSAP + Lenis), catálogo interactivo, carrito de compras y autenticación con Supabase.",
+        tags: ["React", "Vite", "Supabase", "GSAP", "Lenis"],
         year: "2025",
         image: "/projects/screenshot_onigashimastore1.avif",
         url: "https://onigashima-store.vercel.app/",
@@ -66,8 +66,8 @@ const PROJECTS = [
         id: "p4-2",
         tabName: "02 Raíces del Sur",
         title: "Raíces del Sur Lodge — Plataforma de Reservas",
-        desc: "Plataforma de reservas para complejo turístico en la Patagonia con arquitectura mobile-first y alto rendimiento.",
-        tags: ["HTML5", "CSS3", "JavaScript"],
+        desc: "Sitio web contemporáneo para complejo turístico en la Patagonia, diseñado con enfoque Mobile-First y estética minimalista. Desarrollado con herramientas modernas y optimizado para alto rendimiento y máxima accesibilidad.",
+        tags: ["React 19", "TypeScript", "Vite", "Radix UI"],
         year: "2026",
         image: "/projects/screenshot-hotel-cabanas.avif",
         url: "https://raices-del-sur-lodge.vercel.app/",
@@ -77,16 +77,6 @@ const PROJECTS = [
   {
     id: "p5",
     num: "05",
-    title: "Curve Slider — Portfolio",
-    desc: "Showcase para fotografía nocturna con slider parabólico 3D interactivo y scroll infinito con Lenis.",
-    tags: ["JavaScript", "Lenis", "GSAP", "CSS3"],
-    year: "2025",
-    image: "/projects/sebastian-mora.avif",
-    url: "https://curve-slider-web.vercel.app/",
-  },
-  {
-    id: "p6",
-    num: "06",
     title: "Portfolios para clientes",
     desc: "Desarrollo landing pages profesionales y portfolios interactivos para negocios y profesionales que quieren actualizar su presencia digital y potenciar sus resultados.",
     tags: ["React", "Vite", "Tailwind", "GSAP"],
@@ -95,9 +85,9 @@ const PROJECTS = [
     url: "https://javiergarin.dev/",
     items: [
       {
-        id: "p6-1",
+        id: "p5-1",
         tabName: "01 Web Profesional",
-        title: "Portfolio Profesional — Javier Garín",
+        title: "Portfolio Profesional — Marca Personal & Conversión",
         desc: "Landing page y portfolio profesional para especialistas y negocios que buscan destacar en su industria. Diseñado para potenciar la marca personal, captar clientes calificados y exhibir proyectos con estética limpia, micro-animaciones fluidas y alta conversión.",
         tags: ["React", "Vite", "Tailwind", "GSAP"],
         year: "2025",
@@ -105,20 +95,30 @@ const PROJECTS = [
         url: "https://javiergarin.dev/",
       },
       {
-        id: "p6-2",
+        id: "p5-2",
         tabName: "02 3D Interactivo",
-        title: "3D Interactive Portfolio — Javier Garín",
+        title: "3D Interactive Portfolio — Shaders GLSL & WebGL",
         desc: "Single Page Application (SPA) interactiva con fondo procedural WebGL y shaders GLSL en Three.js con efectos glitch y ruido fractal (fBm). Diseñada con arquitectura Mobile-First, UI ultraligera y reactiva con Alpine.js, 60 FPS estables y soporte bilingüe (ES/EN).",
         tags: ["Three.js", "WebGL", "Alpine.js", "Vite"],
         year: "2025",
         image: "/projects/screenshot-web-javier.avif",
         url: "https://javier-garin-dev.vercel.app",
       },
+      {
+        id: "p5-3",
+        tabName: "03 Curve Slider",
+        title: "Curve Slider — Portfolio de Fotografía Nocturna",
+        desc: "Portfolio web diseñado para destacar fotografía nocturna con paleta íntima y un innovador Slider 3D Parabólico de ultra alto rendimiento. Impulsado por transformaciones CSS aceleradas por GPU, scroll infinito con Lenis y 100% de performance en Lighthouse.",
+        tags: ["Vite", "JavaScript", "Lenis", "GSAP"],
+        year: "2025",
+        image: "/projects/sebastian-mora.avif",
+        url: "https://curve-slider-web.vercel.app/",
+      },
     ],
   },
   {
-    id: "p7",
-    num: "07",
+    id: "p6",
+    num: "06",
     title: "Plataformas de Gestión a Medida",
     desc: "Caso de Estudio (Plataforma Privada): PWA B2B desarrollada a medida para gestión deportiva (normativas WA/JDE). Cuenta con arquitectura limpia, routing avanzado, manejo seguro de datos sensibles (RUT) y cumplimiento de normativas de accesibilidad nacional de Chile.",
     tags: ["React", "TypeScript", "Vite", "Supabase", "Zustand"],
@@ -234,9 +234,6 @@ export default function ProjectsSection() {
     >
       {/* Header */}
       <div className={`${styles.header} ${isVisible ? styles.visible : ""}`}>
-        <span className={styles.sectionNum} aria-hidden="true">
-          03
-        </span>
         <div className={styles.headerContent}>
           <h2 className={styles.sectionTitle}>Proyectos</h2>
           <p className={styles.sectionSub}>
@@ -403,7 +400,7 @@ export default function ProjectsSection() {
             <div className={styles.cardContent}>
               <div className={styles.metaRow}>
                 <span className={styles.badgeNum}>
-                  PROYECTO {currentProject.num}
+                  CASO DE ÉXITO · {currentProject.num}
                 </span>
                 <span className={styles.yearText}>{activeItem.year}</span>
               </div>

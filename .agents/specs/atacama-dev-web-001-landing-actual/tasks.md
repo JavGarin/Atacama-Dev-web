@@ -20,6 +20,7 @@
 - [ ] T-GAP06 Perf fuentes: solo variable fonts + `<link preload>` Rubik/Roboto, purgar `static/`.
 - [ ] T-GAP07 TS progresivo: renombrar `useProgressivePortal.js→.ts` + `jsconfig` strict.
 - [x] T-GAP08 Reordenamiento de portfolio: Raíces del Sur integrado como sub-muestra en 04 E-commerce, renumeración de proyectos 01 a 07 → Done 2026-10-14.
+- [x] T-GAP09 Reorganización de portfolios: Curve Slider integrado como sub-muestra 03 en 05 Portfolios para clientes con copy optimizado y stack actualizado (Vite, JS, Lenis, GSAP), renumeración de categorías principales a 01-06 → Done 2026-10-16.
 
 ## C. Definición de Done por tarea futura
 1. `pnpm build` verde. 2. `localhost:5173` 200 sin errores consola. 3. `tasks.md` actualizado. 4. Commit `feat|fix(spec-xxx): ...`.

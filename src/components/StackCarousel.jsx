@@ -43,7 +43,6 @@ export default function StackCarousel() {
     >
       {/* Título de sección */}
       <div className={styles.header}>
-        <span className={styles.sectionNum} aria-hidden="true">02</span>
         <p className={styles.sectionLabel}>Lo que nos define</p>
       </div>
 
