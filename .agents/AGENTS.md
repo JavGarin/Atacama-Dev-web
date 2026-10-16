@@ -67,8 +67,7 @@ Atacama Dev web/
 |  |- Roboto/            # Fuente body self-hosted variable.
 |  |- logo_1_transparente_ad.png         # Logo principal.
 |  |- LogoChc.avif                       # Logo Mercado Publico / Compra Agil.
-|  |- screenshot_web_atacamadev.png      # OG image social sharing (PNG, 1200x630).
-|  |- screenshot_web_atacamadev.avif     # Vista previa README (AVIF).
+|  |- screenshot_web_atacamadev.png      # OG image social sharing & README preview (PNG, 1200x630).
 |  |- sitemap.xml        # Sitemap canonico -> atacama-dev.app
 |  `- robots.txt         # Permite todo + apunta Sitemap a atacama-dev.app
 |- src/
@@ -111,7 +110,7 @@ Atacama Dev web/
 
 ### 3.2 Imagenes / Assets
 - Portfolio: `.avif` unicamente. Siempre `loading="lazy" width="N" height="N"` (excepto Hero logo).
-- OG/Twitter: `.png` (1200x630). El AVIF existe solo para README.
+- OG/Twitter/README: `.png` (1200x630). `screenshot_web_atacamadev.png`.
 - Sin `<img>` sin `alt`. Sin imagenes inline (SVG inline solo si < 1 KB y reutilizable).
 
 ### 3.3 SEO — Dominio canonico

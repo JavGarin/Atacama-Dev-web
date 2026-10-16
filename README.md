@@ -2,7 +2,7 @@
 
 > Official web application for **Atacama Dev** — a Chilean software engineering and bespoke web development agency delivering high-performance, secure, and conversion-focused digital platforms.
 
-![Atacama Dev Web Preview](./public/screenshot_web_atacamadev.avif)
+![Atacama Dev Web Preview](./public/screenshot_web_atacamadev.png)
 
 ---
 
@@ -39,7 +39,7 @@ Atacama Dev web/
 │   ├── projects/           # High-efficiency portfolio screenshots (*.avif)
 │   ├── gif_vizcachi/       # Community recycling initiative assets
 │   ├── Rubik/ + Roboto/    # Self-hosted variable typography
-│   └── screenshot_web_atacamadev.avif # Main web preview & Open Graph visual
+│   └── screenshot_web_atacamadev.png  # Main web preview & Open Graph visual (PNG, 1200x630)
 ├── src/                    # Application source code
 │   ├── components/         # Modular React components + CSS Modules
 │   │   ├── Hero.jsx                # WebGL 3D portal + conversion CTA
