@@ -71,32 +71,6 @@ Atacama Dev web/
 
 ---
 
-## 💻 Local Development
-
-### Prerequisites
-- [Node.js](https://nodejs.org/) (v20+ recommended)
-- [pnpm](https://pnpm.io/) (v10+)
-
-### Setup & Run
-```bash
-# 1. Clone repository
-git clone https://github.com/JavGarin/Atacama-Dev-web.git
-
-# 2. Install dependencies
-pnpm install
-
-# 3. Start local development server
-pnpm dev -- --host --port 5173
-
-# 4. Build optimized production bundle
-pnpm build
-
-# 5. Preview production build locally
-pnpm preview
-```
-
----
-
 ## 📄 License & Credits
 
 - **Author:** Javier Garín ([Atacama Dev](https://www.instagram.com/atacamadev.app/))
